@@ -1,0 +1,148 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* ruta de colores pagina */
+:root{
+    --color_primario: #FBBB02;
+    --color_secundario: #262626;
+    --color_terciario: #D3D3D3;
+    --color_letra_header: #000000;
+    --color_background: #FFE8CC;
+    --font-family: "Architects Daughter";
+}
+
+/* login style */
+
+body{
+    background-color:  var(--color_background);
+}
+
+body main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+body main .login{
+    display: flex;
+    background-color: white;
+    border-radius: 25px;
+    width: 1168px;
+    height: 656px;
+}
+
+body main .login .text_login{
+    font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 25px 0 0 25px;
+    width: 50%;
+    height: 100%;
+}
+
+body main .login .protector{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0 25px 25px 0;
+    background-image: url(../Images/Background.png);
+    width: 50%;
+    height: 100%;
+    z-index: 100;
+}
+
+body main .login .protector .backgorund_img{
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 262px;
+    grid-auto-columns: 206px; 
+    background-color: rgba(255, 255, 255, 0.219);
+    border: 1px white solid;
+    border-radius: 46px;
+    height: 524px;
+    width: 412px;
+}
+
+body main .login .protector .backgorund_img p{
+    position: relative;
+    grid-row: 1;
+    grid-column: 1;
+    top: 20px;
+    left: 20px;
+    z-index: 250;
+    font-family: 'Arial Narrow Bold';
+    font-size: 29px;
+    color: white;
+}
+
+body main .login .protector .backgorund_img img{
+    grid-row: 2;
+    grid-column: 2;
+    transform: scaleX(-1);
+    position: absolute;
+    bottom: 213px;
+    right: 420px;
+    z-index: 200;
+    height: 424px;
+}
+
+body main .login .text_login .login_button button{
+    color: white;
+    border-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right, #FBBB02, #FFB62D);
+    width: 124px;
+    height: 52px;
+    padding: 0 10px 5px 10px;
+    border-radius: 16px;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.16);
+}
+
+body main .login .text_login .part{
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+body main .login .text_login .part .div{
+    opacity: 0.2;
+    height: 1px;
+    width: 100px;
+    background-color: gray;
+    margin: 2px; 
+}
+
+body main .login .text_login .part .login_others p{
+    margin: 0;
+}
+
+@media(max-width:1100px){
+    body main .login{
+        width: 100%;
+        height: auto;
+    }
+
+    body main .login .text_login, body main .login .protector{
+        width: 100%;
+    }
+
+    body main .login .protector .backgorund_img{
+        height: auto;
+        width: 100%;
+    }
+
+    body main .login .protector .backgorund_img img{
+        bottom: 10%;
+        right: 10%; 
+        height: auto;
+    }
+}
