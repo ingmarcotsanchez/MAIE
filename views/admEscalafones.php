@@ -1,6 +1,6 @@
 <?php
 $titulo="Escalafón";
-define("URL","/Maie/views/");
+define("URL","/MAIE/views/");
 require_once("../config/conexion.php");
 if(isset($_SESSION["usu_id"])){
 ?>

@@ -2,8 +2,8 @@
   $titulo="Información General";
   date_default_timezone_set('America/Bogota');
   $fecha_actual = date("d-m-Y");
-  define("URL","/Maie/views/");
-  define("BASE_PATH","/Maie");
+  define("URL","/MAIE/views/");
+  define("BASE_PATH","/MAIE");
   require_once("../config/conexion.php");
   require_once("../models/Usuarios.php");
   /* $usuario = new Usuario(); */
