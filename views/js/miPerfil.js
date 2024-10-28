@@ -1,7 +1,7 @@
 var usu_id = $('#usu_idx').val();
 
 $(document).ready(function(){
-    $.post("/Maie/controller/usuario.php?opc=mostrar", { usu_id : usu_id }, function (data) {
+    $.post("/MAIE/controller/usuario.php?opc=mostrar", { usu_id : usu_id }, function (data) {
         data = JSON.parse(data);
         $('#usu_nom').val(data.usu_nom);
         $('#usu_ape').val(data.usu_ape);
@@ -27,7 +27,7 @@ $(document).on("click","#btnactualizar", function(){
     } else{
         if (pass==newpass){
             var usu_id = $('#usu_idx').val();
-            $.post("/Maie/controller/usuario.php?opc=editPerfil", {usu_id:usu_id,usu_pass:newpass}, function (data) {
+            $.post("/MAIE/controller/usuario.php?opc=editPerfil", {usu_id:usu_id,usu_pass:newpass}, function (data) {
                 Swal.fire({
                     title: 'Correcto!',
                     text: 'Se actualizo Correctamente',

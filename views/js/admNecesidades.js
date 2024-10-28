@@ -13,7 +13,7 @@ function guardaryeditar(e){
     var formData = new FormData($("#necesidades_form")[0]);
     //console.log(formData);
     $.ajax({
-        url: "/Maie/controller/necesidades.php?opc=guardaryeditar",
+        url: "/MAIE/controller/necesidades.php?opc=guardaryeditar",
         type: "POST",
         data: formData,
         contentType: false,
@@ -44,7 +44,7 @@ $(document).ready(function(){
             'csvHtml5',
         ],
         "ajax":{
-            url:"/Maie/controller/necesidades.php?opc=listar",
+            url:"/MAIE/controller/necesidades.php?opc=listar",
             type:"post"
         },
         "bDestroy": true,
@@ -87,7 +87,7 @@ function nuevo(){
 }
 
 function editar(nec_id){
-    $.post("/Maie/controller/necesidades.php?opc=mostrar",{nec_id:nec_id},function (data){
+    $.post("/MAIE/controller/necesidades.php?opc=mostrar",{nec_id:nec_id},function (data){
         data = JSON.parse(data);
         //console.log(data);
         $('#nec_id').val(data.nec_id);
@@ -107,7 +107,7 @@ function eliminar(nec_id){
         cancelButtonText: 'Cancelar',
     }).then((result)=>{
         if(result.value){
-            $.post("/Maie/controller/necesidades.php?opc=eliminar",{nec_id:nec_id},function (data){
+            $.post("/MAIE/controller/necesidades.php?opc=eliminar",{nec_id:nec_id},function (data){
                 $('#necesidades_data').DataTable().ajax.reload();
                 Swal.fire({
                     title: 'Correcto!',
@@ -121,13 +121,13 @@ function eliminar(nec_id){
 
 }
 function est_act(nec_id){
-    $.post("/Maie/controller/necesidades.php?opc=activo",{nec_id:nec_id},function (data){
+    $.post("/MAIE/controller/necesidades.php?opc=activo",{nec_id:nec_id},function (data){
         $('#necesidades_data').DataTable().ajax.reload();
     });
 }
 
 function est_ina(nec_id){
-    $.post("/Maie/controller/necesidades.php?opc=inactivo",{nec_id:nec_id},function (data){
+    $.post("/MAIE/controller/necesidades.php?opc=inactivo",{nec_id:nec_id},function (data){
         $('#necesidades_data').DataTable().ajax.reload();
     });
 }

@@ -13,7 +13,7 @@ function guardaryeditar(e){
     var formData = new FormData($("#asignatura_form")[0]);
     //console.log(formData);
     $.ajax({
-        url: "/Maie/controller/asignatura.php?opc=guardaryeditar",
+        url: "/MAIE/controller/asignatura.php?opc=guardaryeditar",
         type: "POST",
         data: formData,
         contentType: false,
@@ -57,7 +57,7 @@ $(document).ready(function(){
             var dataString = 'asig_alfa=' + asig_alfa;
       
             $.ajax({
-                url: '/Maie/views/js/verificarAlfanumerico.php',
+                url: '/MAIE/views/js/verificarAlfanumerico.php',
                 type: "GET",
                 data: dataString,
                 dataType: "JSON",
@@ -96,7 +96,7 @@ $(document).ready(function(){
             'csvHtml5',
         ],
         "ajax":{
-            url:"/Maie/controller/asignatura.php?opc=listar",
+            url:"/MAIE/controller/asignatura.php?opc=listar",
             type:"post"
         },
         "bDestroy": true,
@@ -139,7 +139,7 @@ function nuevo(){
 }
 
 function editar(asig_id){
-    $.post("/Maie/controller/asignatura.php?opc=mostrar",{asig_id:asig_id},function (data){
+    $.post("/MAIE/controller/asignatura.php?opc=mostrar",{asig_id:asig_id},function (data){
         data = JSON.parse(data);
         //console.log(data);
         $('#asig_id').val(data.asig_id);
@@ -164,7 +164,7 @@ function eliminar(asig_id){
         cancelButtonText: 'Cancelar',
     }).then((result)=>{
         if(result.value){
-            $.post("/Maie/controller/asignatura.php?opc=eliminar",{asig_id:asig_id},function (data){
+            $.post("/MAIE/controller/asignatura.php?opc=eliminar",{asig_id:asig_id},function (data){
                 $('#asignatura_data').DataTable().ajax.reload();
                 Swal.fire({
                     title: 'Correcto!',
@@ -179,7 +179,7 @@ function eliminar(asig_id){
 }
 
 function combo_semestres(){
-    $.post("/Maie/controller/semestre.php?opc=combo", function (data) {
+    $.post("/MAIE/controller/semestre.php?opc=combo", function (data) {
         $('#seme_id').html(data);
     });
 }
@@ -209,7 +209,7 @@ var ExcelToJSON = function() {
 
                     var columns = Object.values(AsignaturaList[i])
 
-                    $.post("/Maie/controller/asignatura.php?opc=guardar_desde_excel",{
+                    $.post("/MAIE/controller/asignatura.php?opc=guardar_desde_excel",{
                         asig_nom : columns[0],
                         asig_alfa : columns[1],
                         asig_nrc : columns[2],

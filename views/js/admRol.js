@@ -13,7 +13,7 @@ function guardaryeditar(e){
     var formData = new FormData($("#rol_form")[0]);
     //console.log(formData);
     $.ajax({
-        url: "/Maie/controller/rol.php?opc=guardaryeditar",
+        url: "/MAIE/controller/rol.php?opc=guardaryeditar",
         type: "POST",
         data: formData,
         contentType: false,
@@ -44,7 +44,7 @@ $(document).ready(function(){
             'csvHtml5',
         ],
         "ajax":{
-            url:"/Maie/controller/rol.php?opc=listar",
+            url:"/MAIE/controller/rol.php?opc=listar",
             type:"post"
         },
         "bDestroy": true,
@@ -87,7 +87,7 @@ function nuevo(){
 }
 
 function editar(rol_id){
-    $.post("/Maie/controller/rol.php?opc=mostrar",{rol_id:rol_id},function (data){
+    $.post("/MAIE/controller/rol.php?opc=mostrar",{rol_id:rol_id},function (data){
         data = JSON.parse(data);
         //console.log(data);
         $('#rol_id').val(data.rol_id);
@@ -107,7 +107,7 @@ function eliminar(rol_id){
         cancelButtonText: 'Cancelar',
     }).then((result)=>{
         if(result.value){
-            $.post("/Maie/controller/rol.php?opc=eliminar",{rol_id:rol_id},function (data){
+            $.post("/MAIE/controller/rol.php?opc=eliminar",{rol_id:rol_id},function (data){
                 $('#rol_data').DataTable().ajax.reload();
                 Swal.fire({
                     title: 'Correcto!',

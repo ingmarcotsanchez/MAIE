@@ -13,7 +13,7 @@ function guardaryeditar(e){
     var formData = new FormData($("#programas_form")[0]);
     //console.log(formData);
     $.ajax({
-        url: "/Maie/controller/programas.php?opc=guardaryeditar",
+        url: "/MAIE/controller/programas.php?opc=guardaryeditar",
         type: "POST",
         data: formData,
         contentType: false,
@@ -50,7 +50,7 @@ $(document).ready(function(){
             'csvHtml5',
         ],
         "ajax":{
-            url:"/Maie/controller/programas.php?opc=listar",
+            url:"/MAIE/controller/programas.php?opc=listar",
             type:"post"
         },
         "bDestroy": true,
@@ -93,7 +93,7 @@ function nuevo(){
 }
 
 function editar(prog_id){
-    $.post("/Maie/controller/programas.php?opc=mostrar",{prog_id:prog_id},function (data){
+    $.post("/MAIE/controller/programas.php?opc=mostrar",{prog_id:prog_id},function (data){
         data = JSON.parse(data);
         //console.log(data);
         $('#prog_id').val(data.prog_id);
@@ -116,7 +116,7 @@ function eliminar(prog_id){
         cancelButtonText: 'Cancelar',
     }).then((result)=>{
         if(result.value){
-            $.post("/Maie/controller/programas.php?opc=eliminar",{prog_id:prog_id},function (data){
+            $.post("/MAIE/controller/programas.php?opc=eliminar",{prog_id:prog_id},function (data){
                 $('#programas_data').DataTable().ajax.reload();
                 Swal.fire({
                     title: 'Correcto!',
@@ -131,7 +131,7 @@ function eliminar(prog_id){
 }
 
 function combo_centros(){
-    $.post("/Maie/controller/centro.php?opc=combo", function (data) {
+    $.post("/MAIE/controller/centro.php?opc=combo", function (data) {
         $('#cen_id').html(data);
     });
 }

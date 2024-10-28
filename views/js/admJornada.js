@@ -13,7 +13,7 @@ function guardaryeditar(e){
     var formData = new FormData($("#jornada_form")[0]);
     //console.log(formData);
     $.ajax({
-        url: "/Maie/controller/jornada.php?opc=guardaryeditar",
+        url: "/MAIE/controller/jornada.php?opc=guardaryeditar",
         type: "POST",
         data: formData,
         contentType: false,
@@ -44,7 +44,7 @@ $(document).ready(function(){
             'csvHtml5',
         ],
         "ajax":{
-            url:"/Maie/controller/jornada.php?opc=listar",
+            url:"/MAIE/controller/jornada.php?opc=listar",
             type:"post"
         },
         "bDestroy": true,
@@ -87,7 +87,7 @@ function nuevo(){
 }
 
 function editar(jor_id){
-    $.post("/Maie/controller/jornada.php?opc=mostrar",{jor_id:jor_id},function (data){
+    $.post("/MAIE/controller/jornada.php?opc=mostrar",{jor_id:jor_id},function (data){
         data = JSON.parse(data);
         //console.log(data);
         $('#jor_id').val(data.jor_id);
@@ -107,7 +107,7 @@ function eliminar(jor_id){
         cancelButtonText: 'Cancelar',
     }).then((result)=>{
         if(result.value){
-            $.post("/Maie/controller/jornada.php?opc=eliminar",{jor_id:jor_id},function (data){
+            $.post("/MAIE/controller/jornada.php?opc=eliminar",{jor_id:jor_id},function (data){
                 $('#jornada_data').DataTable().ajax.reload();
                 Swal.fire({
                     title: 'Correcto!',
@@ -121,14 +121,14 @@ function eliminar(jor_id){
 
 }
 function est_act(jor_id){
-    $.post("/Maie/controller/jornada.php?opc=activo",{jor_id:jor_id},function (data){
+    $.post("/MAIE/controller/jornada.php?opc=activo",{jor_id:jor_id},function (data){
         $('#jornada_data').DataTable().ajax.reload();
        // data = JSON.parse(data);
     });
 }
 
 function est_ina(jor_id){
-    $.post("/Maie/controller/jornada.php?opc=inactivo",{jor_id:jor_id},function (data){
+    $.post("/MAIE/controller/jornada.php?opc=inactivo",{jor_id:jor_id},function (data){
         $('#jornada_data').DataTable().ajax.reload();
     });
 }

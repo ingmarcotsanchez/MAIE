@@ -17,7 +17,7 @@ function guardaryeditar(e){
             formData.append("files[]", $('#fileElem')[0].files[i]);
         }
     $.ajax({
-        url: "/Maie/controller/profesor.php?opc=guardaryeditar",
+        url: "/MAIE/controller/profesor.php?opc=guardaryeditar",
         type: "POST",
         data: formData,
         contentType: false,
@@ -64,7 +64,7 @@ $(document).ready(function(){
             var dataString = 'prof_dni=' + prof_dni;
       
             $.ajax({
-                url: '/Maie/views/js/verificarCedula.php',
+                url: '/MAIE/views/js/verificarCedula.php',
                 type: "GET",
                 data: dataString,
                 dataType: "JSON",
@@ -104,7 +104,7 @@ $(document).ready(function(){
             'csvHtml5',
         ],
         "ajax":{
-            url:"/Maie/controller/profesor.php?opc=listar",
+            url:"/MAIE/controller/profesor.php?opc=listar",
             type:"post"
         },
         "bDestroy": true,
@@ -147,7 +147,7 @@ function nuevo(){
 }
 
 function editar(prof_id){
-    $.post("/Maie/controller/profesor.php?opc=mostrar",{prof_id:prof_id},function (data){
+    $.post("/MAIE/controller/profesor.php?opc=mostrar",{prof_id:prof_id},function (data){
         data = JSON.parse(data);
         //console.log(data);
         $('#prof_id').val(data.prof_id);
@@ -167,14 +167,14 @@ function editar(prof_id){
 }
 
 function prof_act(prof_id){
-    $.post("/Maie/controller/profesor.php?opc=activo",{prof_id:prof_id},function (data){
+    $.post("/MAIE/controller/profesor.php?opc=activo",{prof_id:prof_id},function (data){
         $('#profesor_data').DataTable().ajax.reload();
        // data = JSON.parse(data);
     });
 }
 
 function prof_ina(prof_id){
-    $.post("/Maie/controller/profesor.php?opc=inactivo",{prof_id:prof_id},function (data){
+    $.post("/MAIE/controller/profesor.php?opc=inactivo",{prof_id:prof_id},function (data){
         $('#profesor_data').DataTable().ajax.reload();
        // data = JSON.parse(data);
     });
@@ -191,7 +191,7 @@ function eliminar(prof_id){
         cancelButtonText: 'Cancelar',
     }).then((result)=>{
         if(result.value){
-            $.post("/Maie/controller/profesor.php?opc=eliminar",{prof_id:prof_id},function (data){
+            $.post("/MAIE/controller/profesor.php?opc=eliminar",{prof_id:prof_id},function (data){
                 $('#profesor_data').DataTable().ajax.reload();
                 Swal.fire({
                     title: 'Correcto!',
@@ -206,12 +206,12 @@ function eliminar(prof_id){
 }
 
 function combo_rol(){
-    $.post("/Maie/controller/rol.php?opc=combo", function (data) {
+    $.post("/MAIE/controller/rol.php?opc=combo", function (data) {
         $('#rol_id').html(data);
     });
 }
 function combo_escalfon(){
-    $.post("/Maie/controller/escalafon.php?opc=combo", function (data) {
+    $.post("/MAIE/controller/escalafon.php?opc=combo", function (data) {
         $('#esc_id').html(data);
     });
 }
@@ -241,7 +241,7 @@ var ExcelToJSON = function() {
 
                     var columns = Object.values(ProfesorList[i])
 
-                    $.post("/Maie/controller/profesor.php?opc=guardar_desde_excel",{
+                    $.post("/MAIE/controller/profesor.php?opc=guardar_desde_excel",{
                         prof_dni : columns[0],
                         prof_nom : columns[1],
                         prof_ape : columns[2],

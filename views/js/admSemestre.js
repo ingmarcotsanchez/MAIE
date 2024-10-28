@@ -13,7 +13,7 @@ function guardaryeditar(e){
     var formData = new FormData($("#semestre_form")[0]);
     //console.log(formData);
     $.ajax({
-        url: "/Maie/controller/semestre.php?opc=guardaryeditar",
+        url: "/MAIE/controller/semestre.php?opc=guardaryeditar",
         type: "POST",
         data: formData,
         contentType: false,
@@ -45,7 +45,7 @@ $(document).ready(function(){
             'csvHtml5',
         ],
         "ajax":{
-            url:"/Maie/controller/semestre.php?opc=listar",
+            url:"/MAIE/controller/semestre.php?opc=listar",
             type:"post"
         },
         "bDestroy": true,
@@ -88,7 +88,7 @@ function nuevo(){
 }
 
 function editar(seme_id){
-    $.post("/Maie/controller/semestre.php?opc=mostrar",{seme_id:seme_id},function (data){
+    $.post("/MAIE/controller/semestre.php?opc=mostrar",{seme_id:seme_id},function (data){
         data = JSON.parse(data);
         //console.log(data);
         $('#seme_id').val(data.seme_id);
@@ -108,7 +108,7 @@ function eliminar(seme_id){
         cancelButtonText: 'Cancelar',
     }).then((result)=>{
         if(result.value){
-            $.post("/Maie/controller/semestre.php?opc=eliminar",{seme_id:seme_id},function (data){
+            $.post("/MAIE/controller/semestre.php?opc=eliminar",{seme_id:seme_id},function (data){
                 $('#semestre_data').DataTable().ajax.reload();
                 Swal.fire({
                     title: 'Correcto!',

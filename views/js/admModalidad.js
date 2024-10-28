@@ -13,7 +13,7 @@ function guardaryeditar(e){
     var formData = new FormData($("#modalidad_form")[0]);
     //console.log(formData);
     $.ajax({
-        url: "/Maie/controller/modalidad.php?opc=guardaryeditar",
+        url: "/MAIE/controller/modalidad.php?opc=guardaryeditar",
         type: "POST",
         data: formData,
         contentType: false,
@@ -44,7 +44,7 @@ $(document).ready(function(){
             'csvHtml5',
         ],
         "ajax":{
-            url:"/Maie/controller/modalidad.php?opc=listar",
+            url:"/MAIE/controller/modalidad.php?opc=listar",
             type:"post"
         },
         "bDestroy": true,
@@ -87,7 +87,7 @@ function nuevo(){
 }
 
 function editar(mod_id){
-    $.post("/Maie/controller/modalidad.php?opc=mostrar",{mod_id:mod_id},function (data){
+    $.post("/MAIE/controller/modalidad.php?opc=mostrar",{mod_id:mod_id},function (data){
         data = JSON.parse(data);
         //console.log(data);
         $('#mod_id').val(data.mod_id);
@@ -107,7 +107,7 @@ function eliminar(mod_id){
         cancelButtonText: 'Cancelar',
     }).then((result)=>{
         if(result.value){
-            $.post("/Maie/controller/modalidad.php?opc=eliminar",{mod_id:mod_id},function (data){
+            $.post("/MAIE/controller/modalidad.php?opc=eliminar",{mod_id:mod_id},function (data){
                 $('#modalidad_data').DataTable().ajax.reload();
                 Swal.fire({
                     title: 'Correcto!',
@@ -121,14 +121,14 @@ function eliminar(mod_id){
 
 }
 function est_act(mod_id){
-    $.post("/Maie/controller/modalidad.php?opc=activo",{mod_id:mod_id},function (data){
+    $.post("/MAIE/controller/modalidad.php?opc=activo",{mod_id:mod_id},function (data){
         $('#modalidad_data').DataTable().ajax.reload();
        // data = JSON.parse(data);
     });
 }
 
 function est_ina(mod_id){
-    $.post("/Maie/controller/modalidad.php?opc=inactivo",{mod_id:mod_id},function (data){
+    $.post("/MAIE/controller/modalidad.php?opc=inactivo",{mod_id:mod_id},function (data){
         $('#modalidad_data').DataTable().ajax.reload();
     });
 }

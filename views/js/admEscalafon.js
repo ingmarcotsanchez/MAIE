@@ -13,7 +13,7 @@ function guardaryeditar(e){
     var formData = new FormData($("#escalafon_form")[0]);
     //console.log(formData);
     $.ajax({
-        url: "/Maie/controller/escalafon.php?opc=guardaryeditar",
+        url: "/MAIE/controller/escalafon.php?opc=guardaryeditar",
         type: "POST",
         data: formData,
         contentType: false,
@@ -44,7 +44,7 @@ $(document).ready(function(){
             'csvHtml5',
         ],
         "ajax":{
-            url:"/Maie/controller/escalafon.php?opc=listar",
+            url:"/MAIE/controller/escalafon.php?opc=listar",
             type:"post"
         },
         "bDestroy": true,
@@ -87,7 +87,7 @@ function nuevo(){
 }
 
 function editar(esc_id){
-    $.post("/Maie/controller/escalafon.php?opc=mostrar",{esc_id:esc_id},function (data){
+    $.post("/MAIE/controller/escalafon.php?opc=mostrar",{esc_id:esc_id},function (data){
         data = JSON.parse(data);
         //console.log(data);
         $('#esc_id').val(data.esc_id);
@@ -107,7 +107,7 @@ function eliminar(esc_id){
         cancelButtonText: 'Cancelar',
     }).then((result)=>{
         if(result.value){
-            $.post("/Maie/controller/escalafon.php?opc=eliminar",{esc_id:esc_id},function (data){
+            $.post("/MAIE/controller/escalafon.php?opc=eliminar",{esc_id:esc_id},function (data){
                 $('#escalafon_data').DataTable().ajax.reload();
                 Swal.fire({
                     title: 'Correcto!',

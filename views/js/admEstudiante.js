@@ -13,7 +13,7 @@ function guardaryeditar(e){
     var formData = new FormData($("#estudiante_form")[0]);
     //console.log(formData);
     $.ajax({
-        url: "/Maie/controller/estudiante.php?opc=guardaryeditar",
+        url: "/MAIE/controller/estudiante.php?opc=guardaryeditar",
         type: "POST",
         data: formData,
         contentType: false,
@@ -51,7 +51,7 @@ $(document).ready(function(){
             var dataString = 'est_dni=' + est_dni;
       
             $.ajax({
-                url: '/Maie/views/js/verificarEstudiante.php',
+                url: '/MAIE/views/js/verificarEstudiante.php',
                 type: "GET",
                 data: dataString,
                 dataType: "JSON",
@@ -91,7 +91,7 @@ $(document).ready(function(){
             'csvHtml5',
         ],
         "ajax":{
-            url:"/Maie/controller/estudiante.php?opc=listar",
+            url:"/MAIE/controller/estudiante.php?opc=listar",
             type:"post"
         },
         "bDestroy": true,
@@ -134,7 +134,7 @@ function nuevo(){
 }
 
 function editar(est_id){
-    $.post("/Maie/controller/estudiante.php?opc=mostrar",{est_id:est_id},function (data){
+    $.post("/MAIE/controller/estudiante.php?opc=mostrar",{est_id:est_id},function (data){
         data = JSON.parse(data);
         //console.log(data);
         $('#est_id').val(data.est_id);
@@ -163,7 +163,7 @@ function eliminar(est_id){
         cancelButtonText: 'Cancelar',
     }).then((result)=>{
         if(result.value){
-            $.post("/Maie/controller/estudiante.php?opc=eliminar",{est_id:est_id},function (data){
+            $.post("/MAIE/controller/estudiante.php?opc=eliminar",{est_id:est_id},function (data){
                 $('#estudiante_data').DataTable().ajax.reload();
                 Swal.fire({
                     title: 'Correcto!',
@@ -202,7 +202,7 @@ var ExcelToJSON = function() {
 
                     var columns = Object.values(EstudianteList[i])
 
-                    $.post("/Maie/controller/estudiante.php?opc=guardar_desde_excel",{
+                    $.post("/MAIE/controller/estudiante.php?opc=guardar_desde_excel",{
                         est_dni : columns[0],
                         est_tipo : columns[1],
                         est_cedula : columns[2],

@@ -13,7 +13,7 @@ function guardaryeditar(e){
     var formData = new FormData($("#centro_form")[0]);
     //console.log(formData);
     $.ajax({
-        url: "/Maie/controller/centro.php?opc=guardaryeditar",
+        url: "/MAIE/controller/centro.php?opc=guardaryeditar",
         type: "POST",
         data: formData,
         contentType: false,
@@ -44,7 +44,7 @@ $(document).ready(function(){
             'csvHtml5',
         ],
         "ajax":{
-            url:"/Maie/controller/centro.php?opc=listar",
+            url:"/MAIE/controller/centro.php?opc=listar",
             type:"post"
         },
         "bDestroy": true,
@@ -87,7 +87,7 @@ function nuevo(){
 }
 
 function editar(cen_id){
-    $.post("/Maie/controller/centro.php?opc=mostrar",{cen_id:cen_id},function (data){
+    $.post("/MAIE/controller/centro.php?opc=mostrar",{cen_id:cen_id},function (data){
         data = JSON.parse(data);
         //console.log(data);
         $('#cen_id').val(data.cen_id);
@@ -107,7 +107,7 @@ function eliminar(cen_id){
         cancelButtonText: 'Cancelar',
     }).then((result)=>{
         if(result.value){
-            $.post("/Maie/controller/centro.php?opc=eliminar",{cen_id:cen_id},function (data){
+            $.post("/MAIE/controller/centro.php?opc=eliminar",{cen_id:cen_id},function (data){
                 $('#centro_data').DataTable().ajax.reload();
                 Swal.fire({
                     title: 'Correcto!',
@@ -121,14 +121,14 @@ function eliminar(cen_id){
 
 }
 function est_act(cen_id){
-    $.post("/Maie/controller/centro.php?opc=activo",{cen_id:cen_id},function (data){
+    $.post("/MAIE/controller/centro.php?opc=activo",{cen_id:cen_id},function (data){
         $('#centro_data').DataTable().ajax.reload();
        // data = JSON.parse(data);
     });
 }
 
 function est_ina(cen_id){
-    $.post("/Maie/controller/centro.php?opc=inactivo",{cen_id:cen_id},function (data){
+    $.post("/MAIE/controller/centro.php?opc=inactivo",{cen_id:cen_id},function (data){
         $('#centro_data').DataTable().ajax.reload();
     });
 }

@@ -13,7 +13,7 @@ function guardaryeditar(e){
     var formData = new FormData($("#tipaco_form")[0]);
     //console.log(formData);
     $.ajax({
-        url: "/Maie/controller/tipos.php?opc=guardaryeditar",
+        url: "/MAIE/controller/tipos.php?opc=guardaryeditar",
         type: "POST",
         data: formData,
         contentType: false,
@@ -44,7 +44,7 @@ $(document).ready(function(){
             'csvHtml5',
         ],
         "ajax":{
-            url:"/Maie/controller/tipos.php?opc=listar",
+            url:"/MAIE/controller/tipos.php?opc=listar",
             type:"post"
         },
         "bDestroy": true,
@@ -87,7 +87,7 @@ function nuevo(){
 }
 
 function editar(tipaco_id){
-    $.post("/Maie/controller/tipos.php?opc=mostrar",{tipaco_id:tipaco_id},function (data){
+    $.post("/MAIE/controller/tipos.php?opc=mostrar",{tipaco_id:tipaco_id},function (data){
         data = JSON.parse(data);
         //console.log(data);
         $('#tipaco_id').val(data.tipaco_id);
@@ -107,7 +107,7 @@ function eliminar(tipaco_id){
         cancelButtonText: 'Cancelar',
     }).then((result)=>{
         if(result.value){
-            $.post("/Maie/controller/tipos.php?opc=eliminar",{tipaco_id:tipaco_id},function (data){
+            $.post("/MAIE/controller/tipos.php?opc=eliminar",{tipaco_id:tipaco_id},function (data){
                 $('#tipaco_data').DataTable().ajax.reload();
                 Swal.fire({
                     title: 'Correcto!',
@@ -121,14 +121,14 @@ function eliminar(tipaco_id){
 
 }
 function est_act(tipaco_id){
-    $.post("/Maie/controller/tipos.php?opc=activo",{tipaco_id:tipaco_id},function (data){
+    $.post("/MAIE/controller/tipos.php?opc=activo",{tipaco_id:tipaco_id},function (data){
         $('#tipaco_data').DataTable().ajax.reload();
        // data = JSON.parse(data);
     });
 }
 
 function est_ina(tipaco_id){
-    $.post("/Maie/controller/tipos.php?opc=inactivo",{tipaco_id:tipaco_id},function (data){
+    $.post("/MAIE/controller/tipos.php?opc=inactivo",{tipaco_id:tipaco_id},function (data){
         $('#tipaco_data').DataTable().ajax.reload();
     });
 }
