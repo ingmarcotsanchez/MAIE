@@ -187,7 +187,7 @@
             return $resultado = $sql->fetchAll();
         }
 
-       /*  public function usuario_correo($cedula){
+         public function usuario_correo($cedula){
             $conectar = parent::Conexion();
             parent::set_names();
             $sql = "SELECT usu_correo, usu_pass FROM usuario WHERE est = 1 AND usu_correo=?";
@@ -196,7 +196,7 @@
             $sql->execute();
             var_dump($sql);
             return $resultado = $sql->fetchAll();
-        } */
+        } 
 
         public function total_programas(){
             $conectar= parent::conexion();

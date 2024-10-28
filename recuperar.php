@@ -4,7 +4,7 @@
       require_once("models/Usuarios.php");
       $usuario = new Usuario();
       $usuario->recuperar();
-      $usu_cor = $usuario->usuario_correo($_POST['cedula']);
+      $usu_cor = $usuario->usuario_correo($_POST['usu_correo']);
    }
 ?>
 
