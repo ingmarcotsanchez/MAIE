@@ -97,6 +97,17 @@
                                 </select>
                             </div>
                         </div>
+
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="seme_id">Programa academico</label>
+                                <select class="form-control select2" style="width:100%" name="prog_id" id="prog_id" data-placeholder="Seleccione">
+                                
+                                    <option label="Seleccione"></option>
+
+                                </select>
+                            </div>
+                        </div>
                        
                     </div>
                 </div>

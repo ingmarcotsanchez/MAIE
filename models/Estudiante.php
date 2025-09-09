@@ -1,11 +1,11 @@
 <?php
     class Estudiante extends Conectar{
-        public function insert_estudiante($est_dni, $est_tipo, $est_cedula,$est_nom,$est_ape,$est_fecnac,$est_correo,$est_sex,$est_telf,$est_estado){
+        public function insert_estudiante($est_dni, $est_tipo, $est_cedula,$est_nom,$est_ape,$est_fecnac,$est_correo,$est_sex,$est_telf,$est_estado,$prog_id){
 
             $conectar = parent::Conexion();
             parent::set_names();
-            $sql="INSERT INTO estudiante (est_id, est_dni, est_tipo, est_cedula, est_nom, est_ape, est_fecnac, est_correo, est_sex, est_telf, est_estado, est) 
-                                VALUES (NULL,?,?,?,?,?,?,?,?,?,?,1);";
+            $sql="INSERT INTO estudiante (est_id, est_dni, est_tipo, est_cedula, est_nom, est_ape, est_fecnac, est_correo, est_sex, est_telf, est_estado, prog_id, est) 
+                                VALUES (NULL,?,?,?,?,?,?,?,?,?,?,?,1);";
 
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $est_dni);
@@ -18,12 +18,13 @@
             $sql->bindValue(8, $est_sex);
             $sql->bindValue(9, $est_telf);
             $sql->bindValue(10, $est_estado);
+            $sql->bindValue(11, $prog_id);
             $sql->execute();
 
             return $resultado = $sql->fetchAll();
         }
 
-        public function update_estudiante($est_id,$est_dni, $est_tipo, $est_cedula,$est_nom,$est_ape,$est_fecnac,$est_correo,$est_sex,$est_telf,$est_estado){
+        public function update_estudiante($est_id,$est_dni, $est_tipo, $est_cedula,$est_nom,$est_ape,$est_fecnac,$est_correo,$est_sex,$est_telf,$est_estado,$prog_id){
 
             $conectar= parent::conexion();
             parent::set_names();
@@ -38,7 +39,8 @@
                     est_correo = ?,
                     est_sex = ?,
                     est_telf = ?,
-                    est_estado = ? 
+                    est_estado = ?,
+                    prog_id = ? 
                 WHERE
                     est_id = ?";
             $sql=$conectar->prepare($sql);
@@ -52,7 +54,8 @@
             $sql->bindValue(8, $est_sex);
             $sql->bindValue(9, $est_telf);
             $sql->bindValue(10, $est_estado);
-            $sql->bindValue(11, $est_id);
+            $sql->bindValue(11, $prog_id);
+            $sql->bindValue(12, $est_id);
             $sql->execute();
             return $resultado=$sql->fetchAll();
         }
@@ -67,10 +70,15 @@
             return $resultado = $sql->fetchAll();
         }
 
-        public function estudiantes(){
+        public function estudiantes($cen_id = '', $prog_id = ''){
             $conectar = parent::Conexion();
             parent::set_names();
-            $sql = "SELECT * FROM estudiante WHERE est = 1";
+            if($cen_id == '' && $prog_id == ''){
+                $sql="SELECT * FROM estudiante";
+            }else{
+                $sql="SELECT * FROM estudiante WHERE prog_id = '$prog_id'";
+            }
+            //$sql = "SELECT * FROM estudiante WHERE est = 1";
             $sql=$conectar->prepare($sql);
             $sql->execute();
             return $resultado = $sql->fetchAll();
@@ -85,10 +93,6 @@
             $sql->execute();
             return $resultado = $sql->fetchAll();
         }
-
-        
-
-        
 
         public function total_estudiantes_compromiso(){
             $conectar= parent::conexion();

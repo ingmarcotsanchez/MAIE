@@ -69,7 +69,11 @@
             }
             break;
         case "combo2":
-            $datos = $programas->get_programas2();
+            $cen_id = '';
+            if(isset($_GET["cen_id"])){
+                $cen_id = $_GET["cen_id"];
+            }            
+            $datos = $programas->get_programas2($cen_id);
             $html="";
             $html.="<option label='Seleccionar'></option>";
             if(is_array($datos)==true and count($datos)>0){

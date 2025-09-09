@@ -13,7 +13,7 @@
                     exit();
                 }else{
                     
-                    $sql = "SELECT * FROM usuario WHERE usu_correo=? and usu_pass=MD5(?) and usu_rol=? and est=1";
+                    $sql = "SELECT * FROM usuario WHERE usu_correo=? and usu_pass=MD5(?) and usu_rol=? and estado=1";
                     $stmt = $conectar->prepare($sql);
                     $stmt->bindValue(1,$usu_correo);
                     $stmt->bindValue(2,$usu_pass);
@@ -34,6 +34,8 @@
                             header("Location:".Conectar::ruta()."views/remision.php");
                             exit();
                         }
+                        $_SESSION["cen_id"]=$resultado["cen_id"];
+                        $_SESSION["prog_id"]=$resultado["prog_id"];
                         
                     }else{
                         header("Location:".Conectar::ruta()."index.php?m=1");
@@ -86,7 +88,6 @@
         public function get_usuarios(){
             $usuario = parent::Conexion();
             parent::set_names();
-            //$sql="SELECT * FROM usuarios";
             $sql = "SELECT 
                             usuario.usu_id,
                             usuario.usu_nom,
@@ -94,7 +95,7 @@
                             usuario.usu_correo,
                             usuario.usu_rol,
                             usuario.usu_pass,
-                            usuario.est 
+                            usuario.estado
                             FROM usuario 
                             ";
             $sql=$usuario->prepare($sql);
@@ -162,7 +163,7 @@
         public function delete_usuarios($usu_id){
             $usuario=parent::Conexion();
             parent::set_names();
-            $sql="UPDATE usuario SET est=0 WHERE usu_id=?";
+            $sql="UPDATE usuario SET estado=0 WHERE usu_id=?";
             $sql=$usuario->prepare($sql);
             $sql->bindValue(1,$usu_id);
             $sql->execute();
@@ -171,7 +172,7 @@
         public function update_estadoActivo($usu_id){
             $conectar = parent::Conexion();
             parent::set_names();
-            $sql = "UPDATE usuario SET est=1 WHERE usu_id = ?";
+            $sql = "UPDATE usuario SET estado=1 WHERE usu_id = ?";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1,$usu_id);
             $sql->execute();
@@ -180,7 +181,7 @@
         public function update_estadoInactivo($usu_id){
             $conectar = parent::Conexion();
             parent::set_names();
-            $sql = "UPDATE usuario SET est=0 WHERE usu_id = ?";
+            $sql = "UPDATE usuario SET estado=0 WHERE usu_id = ?";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1,$usu_id);
             $sql->execute();
@@ -190,7 +191,7 @@
          public function usuario_correo($cedula){
             $conectar = parent::Conexion();
             parent::set_names();
-            $sql = "SELECT usu_correo, usu_pass FROM usuario WHERE est = 1 AND usu_correo=?";
+            $sql = "SELECT usu_correo, usu_pass FROM usuario WHERE estado = 1 AND usu_correo=?";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1,$cedula);
             $sql->execute();

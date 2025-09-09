@@ -1,7 +1,7 @@
 var usu_id = $('#usu_idx').val();
 
 function init(){
-    $("#estudiante_form").on("submit",function(e){
+    $("#remision_form").on("submit",function(e){
         guardaryeditar(e);
     });
 
@@ -10,10 +10,10 @@ function init(){
 function guardaryeditar(e){
     //console.log("prueba");
     e.preventDefault();
-    var formData = new FormData($("#estudiante_form")[0]);
+    var formData = new FormData($("#remision_form")[0]);
     //console.log(formData);
     $.ajax({
-        url: "/MAIE/controller/estudiante.php?opc=guardaryeditar",
+        url: "/MAIE/controller/remision.php?opc=guardaryeditar",
         type: "POST",
         data: formData,
         contentType: false,
@@ -21,8 +21,8 @@ function guardaryeditar(e){
         
         success: function(data){
             console.log(data);
-            $('#estudiante_data').DataTable().ajax.reload();
-            $('#modalcrearEstudiante').modal('hide');
+            $('#remisiones_data').DataTable().ajax.reload();
+            $('#modalcrearRemision').modal('hide');
 
             Swal.fire({
                 title: 'Correcto!',
@@ -37,12 +37,47 @@ function guardaryeditar(e){
 $(document).ready(function(){
 
     $('#prog_id').select2({
-        dropdownParent: $('#modalcrearEstudiante')
+        dropdownParent: $('#modalcrearRemision')
     });
-    combo_programas();
+    $('#est_id').select2({
+        dropdownParent: $('#modalcrearRemision')
+    });
+    $('#mod_id').select2({
+        dropdownParent: $('#modalcrearRemision')
+    });
+    $('#jor_id').select2({
+        dropdownParent: $('#modalcrearRemision')
+    });
+    $('#cen_id').select2({
+        dropdownParent: $('#modalcrearRemision')
+    });
+    $('#seme_id').select2({
+        dropdownParent: $('#modalcrearRemision')
+    });
+    $('#tipaco_id').select2({
+        dropdownParent: $('#modalcrearRemision')
+    });
+    $('#asig_id').select2({
+        dropdownParent: $('#modalcrearRemision')
+    });
+    $('#nec_id').select2({
+        dropdownParent: $('#modalcrearRemision')
+    });
+    $('#prof_id').select2({
+        dropdownParent: $('#modalcrearRemision')
+    });
+    //combo_programas();
+    //combo_estudiantes();
+    combo_modalidades();
+    combo_jornadas();
+    combo_centros();
+    combo_semestres();
+    combo_tipoAcompañamiento();
+    combo_asignaturas();
+    combo_necesidades();
+    combo_profesores();
 
-
-    $('input#est_dni').keypress(function (event) {
+    /* $('input#est_dni').keypress(function (event) {
         if (event.which < 18 || event.which > 57 || this.value.length === 10) {
           return false;
         }
@@ -85,10 +120,10 @@ $(document).ready(function(){
                 }
             });
         }
-    });
+    }); */
 
 
-    $('#estudiante_data').DataTable({
+    $('#remisiones_data').DataTable({
         "aProcessing": true,
         "aServerSide": true,
         dom: 'Bfrtip',
@@ -97,7 +132,7 @@ $(document).ready(function(){
             'csvHtml5',
         ],
         "ajax":{
-            url:"/MAIE/controller/estudiante.php?opc=listar",
+            url:"/MAIE/controller/remision.php?opc=listar",
             type:"post"
         },
         "bDestroy": true,
@@ -134,33 +169,35 @@ $(document).ready(function(){
 });
 
 function nuevo(){
-    $('#titulo_modal').html('Nuevo Estudiante');
-    $('#estudiante_form')[0].reset();
-    $('#modalcrearEstudiante').modal('show');
+    $('#titulo_modal').html('Nueva Remisión');
+    $('#remision_form')[0].reset();
+    $('#modalcrearRemision').modal('show');
 }
 
-function editar(est_id){
-    $.post("/MAIE/controller/estudiante.php?opc=mostrar",{est_id:est_id},function (data){
+function editar(remision_id){
+    $.post("/MAIE/controller/remision.php?opc=mostrar",{remision_id:remision_id},function (data){
         data = JSON.parse(data);
         //console.log(data);
         $('#est_id').val(data.est_id);
-        $('#est_dni').val(data.est_dni);
-        $('#est_tipo').val(data.est_tipo);
-        $('#est_cedula').val(data.est_cedula);
-        $('#est_nom').val(data.est_nom);
-        $('#est_ape').val(data.est_ape);
-        $('#est_fecnac').val(data.est_fecnac);
-        $('#est_correo').val(data.est_correo);
-        $('#est_sex').val(data.est_sex);
         $('#est_telf').val(data.est_telf);
-        $('#est_estado').val(data.est_estado);
+        $('#mod_id').val(data.mod_id);
+        $('#jor_id').val(data.jor_id);
+        $('#cen_id').val(data.cen_id);
         $('#prog_id').val(data.prog_id);
+        $('#seme_id').val(data.seme_id);
+        $('#tipaco_id').val(data.tipaco_id);
+        $('#asig_id').val(data.asig_id);
+        $('#nec_id').val(data.nec_id);
+        $('#prof_id').val(data.prof_id);
+        $('#rem_mens').val(data.rem_mens);
+        
+        $('#rem_estado').val(data.rem_estado);
     });
-    $('#titulo_modal').html('Editar Estudiante');
-    $('#modalcrearEstudiante').modal('show');
+    $('#titulo_modal').html('Editar Remisión');
+    $('#modalcrearRemision').modal('show');
 }
 
-function eliminar(est_id){
+function eliminar(remision_id){
     Swal.fire({
         title: 'Eliminar!',
         text: 'Desea eleminar el Registro?',
@@ -170,8 +207,8 @@ function eliminar(est_id){
         cancelButtonText: 'Cancelar',
     }).then((result)=>{
         if(result.value){
-            $.post("/MAIE/controller/estudiante.php?opc=eliminar",{est_id:est_id},function (data){
-                $('#estudiante_data').DataTable().ajax.reload();
+            $.post("/MAIE/controller/remision.php?opc=eliminar",{remision_id:remision_id},function (data){
+                $('#remisiones_data').DataTable().ajax.reload();
                 Swal.fire({
                     title: 'Correcto!',
                     text: 'Se Elimino Correctamente',
@@ -183,18 +220,84 @@ function eliminar(est_id){
     });
 
 }
+function test(){
+    alert(12);
+}
 
 function combo_programas(){
-    $.post("/MAIE/controller/programas.php?opc=combo2", function (data) {
-        $('#prog_id').html(data);
+    if($("#cen_id").val() > 0 && $("#cen_id").val() != ''){
+        $.post("/MAIE/controller/programas.php?opc=combo2&cen_id="+$("#cen_id").val(), function (data) {
+            $('#prog_id').html(data);
+        });
+    }else{
+        alert("debe seleccionar el centro")
+    }
+}
+
+function combo_estudiantes(){
+    if($("#cen_id").val() > 0 && $("#cen_id").val() != '' && $("#prog_id").val() > 0 && $("#prog_id").val() != '' ){
+        $.post("/MAIE/controller/estudiante.php?opc=combo&cen_id="+$("#cen_id").val()+"&prog_id="+$("#prog_id").val(), function (data) {
+            $('#est_id').html(data);
+        });
+    }else{
+        alert("debe seleccionarl el centro y el programa")
+    }
+    
+}
+
+function combo_modalidades(){
+    $.post("/MAIE/controller/modalidad.php?opc=combo", function (data) {
+        $('#mod_id').html(data);
     });
 }
 
-$(document).on("click", "#btnplantilla", function () {
-    $('#modalEstudiante').modal('show');
-});
+function combo_jornadas(){
+    $.post("/MAIE/controller/jornada.php?opc=combo", function (data) {
+        $('#jor_id').html(data);
+    });
+}
 
-var ExcelToJSON = function() {
+function combo_centros(){
+    $.post("/MAIE/controller/centro.php?opc=combo", function (data) {
+        $('#cen_id').html(data);
+    });
+}
+
+function combo_semestres(){
+    $.post("/MAIE/controller/semestre.php?opc=combo", function (data) {
+        $('#seme_id').html(data);
+    });
+}
+
+function combo_tipoAcompañamiento(){
+    $.post("/MAIE/controller/tipos.php?opc=combo", function (data) {
+        $('#tipaco_id').html(data);
+    });
+}
+
+function combo_asignaturas(){
+    $.post("/MAIE/controller/asignatura.php?opc=combo", function (data) {
+        $('#asig_id').html(data);
+    });
+}
+
+function combo_necesidades(){
+    $.post("/MAIE/controller/necesidades.php?opc=combo", function (data) {
+        $('#nec_id').html(data);
+    });
+}
+
+function combo_profesores(){
+    $.post("/MAIE/controller/profesor.php?opc=combo", function (data) {
+        $('#prof_id').html(data);
+    });
+}
+
+/* $(document).on("click", "#btnplantilla", function () {
+    $('#modalEstudiante').modal('show');
+}); */
+
+/* var ExcelToJSON = function() {
     this.parseExcel = function(file) {
         var reader = new FileReader();
 
@@ -232,10 +335,9 @@ var ExcelToJSON = function() {
                     });
 
                 }
-                /* TODO:Despues de subir la informacion limpiar inputfile */
+                
                 document.getElementById("upload").value=null;
 
-                /* TODO: Actualizar Datatable JS */
                 $('#estudiante_data').DataTable().ajax.reload();
                 $('#modalEstudiante').modal('hide');
             })
@@ -255,6 +357,8 @@ function handleFileSelect(evt) {
 }
 
 document.getElementById('upload').addEventListener('change', handleFileSelect, false);
+ */
+
 
 
 init();

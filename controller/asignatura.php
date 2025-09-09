@@ -6,9 +6,9 @@
     switch($_GET["opc"]){
         case "guardaryeditar":
                 if(empty($_POST["asig_id"])){
-                    $asignatura->insert_asignatura($_POST["asig_nom"],$_POST["asig_alfa"],$_POST["asig_nrc"],$_POST["asig_cred"],$_POST["asig_horas"],$_POST["seme_id"]);
+                    $asignatura->insert_asignatura($_POST["asig_nom"],$_POST["asig_alfa"],$_POST["asig_nrc"],$_POST["asig_cred"],$_POST["asig_horas"],$_POST["seme_id"],$_POST["cen_id"],$_POST["prog_id"]);
                 }else{
-                    $asignatura->update_asignatura($_POST["asig_id"], $_POST["asig_nom"],$_POST["asig_alfa"],$_POST["asig_nrc"],$_POST["asig_cred"],$_POST["asig_horas"],$_POST["seme_id"]);
+                    $asignatura->update_asignatura($_POST["asig_id"], $_POST["asig_nom"],$_POST["asig_alfa"],$_POST["asig_nrc"],$_POST["asig_cred"],$_POST["asig_horas"],$_POST["seme_id"],$_POST["cen_id"],$_POST["prog_id"]);
                 }
                 break;
         case "mostrar":
@@ -22,6 +22,8 @@
                         $output["asig_cred"] = $row["asig_cred"];
                         $output["asig_horas"] = $row["asig_horas"];
                         $output["seme_id"] = $row["seme_id"];
+                        $output["cen_id"] = $row["cen_id"];
+                        $output["prog_id"] = $row["prog_id"];
                     }
                     echo json_encode($output);
                 }
@@ -56,7 +58,13 @@
                 echo json_encode($results);
                 break;
         case "combo":
-            $datos=$asignatura->asignaturas();
+            $cen_id = '';
+            $prog_id = '';
+            if(isset($_GET["cen_id"]) and isset($_GET["prog_id"])){
+                $cen_id = $_GET["cen_id"];
+                $prog_id = $_GET["prog_id"];
+            }   
+            $datos=$asignatura->asignaturas($cen_id,$prog_id);
             if(is_array($datos)==true and count($datos)>0){
                 $html= " <option label='Seleccione'></option>";
                 foreach($datos as $row){
@@ -66,7 +74,7 @@
             }
             break;
         case "guardar_desde_excel":
-            $asignatura->insert_asignatura($_POST["asig_nom"],$_POST["asig_alfa"],$_POST["asig_nrc"],$_POST["asig_cred"],$_POST["asig_horas"],$_POST["seme_id"]);
+            $asignatura->insert_asignatura($_POST["asig_nom"],$_POST["asig_alfa"],$_POST["asig_nrc"],$_POST["asig_cred"],$_POST["asig_horas"],$_POST["seme_id"],$_POST["cen_id"],$_POST["prog_id"]);
             break;
     }
 ?>

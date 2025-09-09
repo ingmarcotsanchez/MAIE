@@ -39,7 +39,17 @@ $(document).ready(function(){
         dropdownParent: $('#modalcrearAsignatura')
     });
 
+    $('#cen_id').select2({
+        dropdownParent: $('#modalcrearAsignatura')
+    });
+
+    $('#prog_id').select2({
+        dropdownParent: $('#modalcrearAsignatura')
+    });
+
     combo_semestres();
+
+    combo_centros();
 
 
     $('input#asig_alfa').keypress(function (event) {
@@ -149,6 +159,8 @@ function editar(asig_id){
         $('#asig_cred').val(data.asig_cred);
         $('#asig_horas').val(data.asig_horas);
         $('#seme_id').val(data.seme_id).trigger('change');
+        $('#cen_id').val(data.cen_id).trigger('change');
+        $('#prog_id').val(data.prog_id).trigger('change');
     });
     $('#titulo_modal').html('Editar Asignatua');
     $('#modalcrearAsignatura').modal('show');
@@ -184,6 +196,22 @@ function combo_semestres(){
     });
 }
 
+function combo_centros(){
+    $.post("/MAIE/controller/centro.php?opc=combo", function (data) {
+        $('#cen_id').html(data);
+    });
+}
+
+function combo_programas(){
+    if($("#cen_id").val() > 0 && $("#cen_id").val() != ''){
+        $.post("/MAIE/controller/programas.php?opc=combo2&cen_id="+$("#cen_id").val(), function (data) {
+            $('#prog_id').html(data);
+        });
+    }else{
+        alert("debe seleccionar el centro")
+    }
+}
+
 $(document).on("click", "#btnplantilla", function () {
     $('#modalAsignatura').modal('show');
 });
@@ -215,7 +243,8 @@ var ExcelToJSON = function() {
                         asig_nrc : columns[2],
                         asig_cred : columns[3],
                         asig_horas : columns[4],
-                        seme_id : columns[5]
+                        seme_id : columns[5],
+                        cen_id : columns[6]
                     }, function (data) {
                         console.log(data);
                     });

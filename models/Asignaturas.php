@@ -1,11 +1,11 @@
 <?php
     class Asignatura extends Conectar{
-        public function insert_asignatura($asig_nom,$asig_alfa,$asig_nrc,$asig_cred,$asig_horas,$seme_id){
+        public function insert_asignatura($asig_nom,$asig_alfa,$asig_nrc,$asig_cred,$asig_horas,$seme_id,$cen_id,$prog_id){
 
             $conectar = parent::Conexion();
             parent::set_names();
-            $sql="INSERT INTO asignaturas (asig_id, asig_nom, asig_alfa, asig_nrc, asig_cred, asig_horas, seme_id, est) 
-                                VALUES (NULL,?,?,?,?,?,?,'1');";
+            $sql="INSERT INTO asignaturas (asig_id, asig_nom, asig_alfa, asig_nrc, asig_cred, asig_horas, seme_id, cen_id, prog_id, est) 
+                                VALUES (NULL,?,?,?,?,?,?,?,?,'1');";
 
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $asig_nom);
@@ -14,12 +14,14 @@
             $sql->bindValue(4, $asig_cred);
             $sql->bindValue(5, $asig_horas);
             $sql->bindValue(6, $seme_id);
+            $sql->bindValue(7, $cen_id);
+            $sql->bindValue(8, $prog_id);
             $sql->execute();
 
             return $resultado = $sql->fetchAll();
         }
 
-        public function update_asignatura($asig_id,$asig_nom,$asig_alfa,$asig_nrc,$asig_cred,$asig_horas,$seme_id){
+        public function update_asignatura($asig_id,$asig_nom,$asig_alfa,$asig_nrc,$asig_cred,$asig_horas,$seme_id,$cen_id, $prog_id){
 
             $conectar= parent::conexion();
             parent::set_names();
@@ -30,7 +32,9 @@
                     asig_nrc = ?,
                     asig_cred = ?,
                     asig_horas = ?,
-                    seme_id = ?
+                    seme_id = ?,
+                    cen_id = ?,
+                    prog_id
                 WHERE
                     asig_id = ?";
             $sql=$conectar->prepare($sql);
@@ -40,7 +44,9 @@
             $sql->bindValue(4, $asig_cred);
             $sql->bindValue(5, $asig_horas);
             $sql->bindValue(6, $seme_id);
-            $sql->bindValue(7, $asig_id);
+            $sql->bindValue(7, $cen_id);
+            $sql->bindValue(8, $prog_id);
+            $sql->bindValue(9, $asig_id);
             $sql->execute();
             return $resultado=$sql->fetchAll();
         }
@@ -55,10 +61,15 @@
             return $resultado = $sql->fetchAll();
         }
 
-        public function asignaturas(){
+        public function asignaturas($cen_id = '', $prog_id = ''){
             $conectar = parent::Conexion();
             parent::set_names();
-            $sql = "SELECT * FROM asignaturas WHERE est = 1";
+            if($cen_id == '' && $prog_id == ''){
+                $sql="SELECT * FROM asignaturas";
+            }else{
+                $sql="SELECT * FROM asignaturas WHERE prog_id = '$prog_id'";
+            }
+            //$sql = "SELECT * FROM asignaturas WHERE est = 1";
             $sql=$conectar->prepare($sql);
             $sql->execute();
             return $resultado = $sql->fetchAll();
@@ -75,9 +86,16 @@
                 asignaturas.asig_cred,
                 asignaturas.asig_horas,
                 semestres.seme_id,
-                semestres.seme_nombre
+                semestres.seme_nombre,
+                centros.cen_id,
+                centros.cen_nombre,
+                programas.prog_id,
+                programas.codigo,
+                programas.descripcion
                 FROM asignaturas
                 INNER JOIN semestres on asignaturas.seme_id = semestres.seme_id
+                INNER JOIN centros on asignaturas.cen_id = centros.cen_id
+                INNER JOIN programas on asignaturas.prog_id = programas.prog_id   
                 WHERE asignaturas.est = 1";
             $sql=$conectar->prepare($sql);
             $sql->execute();

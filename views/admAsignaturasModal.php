@@ -12,7 +12,7 @@
                     
                     <input type="hidden" name="asig_id" id="asig_id">
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-12">
                             <div class="form-group">
                                 <label for="asig_nom">Asignatura</label>
                                 <input type="text" class="form-control" name="asig_nom" id="asig_nom" placeholder="Ingrese el Peso">
@@ -25,9 +25,6 @@
                                 <div id="respuesta"></div>
                             </div>
                         </div>
-                        
-                    </div>
-                    <div class="row">
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="asig_nrc">NRC</label>
@@ -40,8 +37,6 @@
                                 <input type="text" class="form-control" name="asig_cred" id="asig_cred" placeholder="Ingrese el Número de Crédito">
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="asig_horas">Horas</label>
@@ -52,6 +47,27 @@
                             <div class="form-group">
                                 <label for="seme_id">Semestre</label>
                                 <select class="form-control select2" style="width:100%" name="seme_id" id="seme_id" data-placeholder="Seleccione">
+                                
+                                    <option label="Seleccione"></option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="cen_id">Centro de Operaciones</label>
+                                <select class="form-control select2" style="width:100%" name="cen_id" id="cen_id" data-placeholder="Seleccione" onchange="combo_programas()">
+                                
+                                    <option label="Seleccione"></option>
+
+                                </select>
+                            </div>
+                        </div>
+                    
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="prog_id">Programa</label>
+                                <select class="form-control select2" style="width:100%" name="prog_id" id="prog_id" data-placeholder="Seleccione">
                                 
                                     <option label="Seleccione"></option>
 

@@ -39,7 +39,7 @@
                                 <input type="email" class="form-control" name="prof_correo" id="prof_correo" placeholder="Ingrese un Correo">
                             </div>
                         </div>
-                        <div class="col-4">
+                        <div class="col-3">
                             <div class="form-group">
                                 <label for="prof_niv">Último Nivel de Estudio</label>
                                 <select class="form-control select2" style="width:100%" name="prof_niv" id="prof_niv" data-placeholder="Seleccione">
@@ -51,7 +51,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-4">
+                        <div class="col-3">
                             <div class="form-group">
                                 <label for="prof_sex">Sexo</label>
                                 <select class="form-control select2" style="width:100%" name="prof_sex" id="prof_sex" data-placeholder="Seleccione">
@@ -61,13 +61,13 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-4">
+                        <div class="col-3">
                             <div class="form-group">
                                 <label for="prof_telf">Celular</label>
                                 <input type="text" class="form-control" name="prof_telf" id="prof_telf" placeholder="Ingrese Segundo Apellido">
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-3">
                             <div class="form-group">
                                 <label for="rol_id">Rol</label>
                                 <select class="form-control select2" style="width:100%" name="rol_id" id="rol_id" data-placeholder="Seleccione">

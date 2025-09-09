@@ -6,9 +6,9 @@
     switch($_GET["opc"]){
         case "guardaryeditar":
                 if(empty($_POST["est_id"])){
-                    $estudiante->insert_estudiante($_POST["est_dni"],$_POST["est_tipo"],$_POST["est_cedula"],$_POST["est_nom"],$_POST["est_ape"],$_POST["est_fecnac"],$_POST["est_correo"],$_POST["est_sex"],$_POST["est_telf"],$_POST["est_estado"]);
+                    $estudiante->insert_estudiante($_POST["est_dni"],$_POST["est_tipo"],$_POST["est_cedula"],$_POST["est_nom"],$_POST["est_ape"],$_POST["est_fecnac"],$_POST["est_correo"],$_POST["est_sex"],$_POST["est_telf"],$_POST["est_estado"],$_POST["prog_id"]);
                 }else{
-                    $estudiante->update_estudiante($_POST["est_id"],$_POST["est_dni"],$_POST["est_tipo"],$_POST["est_cedula"],$_POST["est_nom"],$_POST["est_ape"],$_POST["est_fecnac"],$_POST["est_correo"],$_POST["est_sex"],$_POST["est_telf"],$_POST["est_estado"]);
+                    $estudiante->update_estudiante($_POST["est_id"],$_POST["est_dni"],$_POST["est_tipo"],$_POST["est_cedula"],$_POST["est_nom"],$_POST["est_ape"],$_POST["est_fecnac"],$_POST["est_correo"],$_POST["est_sex"],$_POST["est_telf"],$_POST["est_estado"],$_POST["prog_id"]);
                 }
                 break;
         case "mostrar":
@@ -27,6 +27,7 @@
                         $output["est_sex"] = $row["est_sex"];
                         $output["est_telf"] = $row["est_telf"];
                         $output["est_estado"] = $row["est_estado"];
+                        $output["prog_id"] = $row["prog_id"];
                     }
                     echo json_encode($output);
                 }
@@ -76,7 +77,14 @@
                 echo json_encode($results);
                 break;
         case "combo":
-            $datos=$estudiante->estudiantes();
+            $cen_id = '';
+            $prog_id = '';
+            if(isset($_GET["cen_id"]) and isset($_GET["prog_id"])){
+                $cen_id = $_GET["cen_id"];
+                $prog_id = $_GET["prog_id"];
+            }            
+             
+            $datos=$estudiante->estudiantes($cen_id,$prog_id);
             if(is_array($datos)==true and count($datos)>0){
                 $html= " <option label='Seleccione'></option>";
                 foreach($datos as $row){
@@ -86,7 +94,7 @@
             }
             break;
         case "guardar_desde_excel":
-            $estudiante->insert_estudiante($_POST["est_dni"],$_POST["est_tipo"],$_POST["est_cedula"],$_POST["est_nom"],$_POST["est_ape"],$_POST["est_fecnac"],$_POST["est_correo"],$_POST["est_sex"],$_POST["est_telf"],$_POST["est_estado"]);
+            $estudiante->insert_estudiante($_POST["est_dni"],$_POST["est_tipo"],$_POST["est_cedula"],$_POST["est_nom"],$_POST["est_ape"],$_POST["est_fecnac"],$_POST["est_correo"],$_POST["est_sex"],$_POST["est_telf"],$_POST["est_estado"],$_POST["prog_id"]);
             break;
         
         

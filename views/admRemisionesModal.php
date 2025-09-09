@@ -1,4 +1,4 @@
-<div class="modal fade" id="modalcrearAsignatura" data-backdrop="static" data-keyboard="false">
+<div class="modal fade" id="modalcrearRemision" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -7,33 +7,40 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="post" id="asignatura_form">
+            <form method="post" id="remision_form">
                 <div class="modal-body">
                     
-                    <input type="hidden" name="asig_id" id="asig_id">
+                    <input type="hidden" name="remision_id" id="remision_id">
                     <div class="row">
-                        <div class="col-3">
+                        <div class="col-6">
                             <div class="form-group">
-                                <label for="est_id">ID Estudiante</label>
-                                <select class="form-control select2" style="width:100%" name="est_id" id="est_id" data-placeholder="Seleccione">
+                                <label for="cen_id">Centro de Operaciones</label>
+                                <select class="form-control select2" style="width:100%" name="cen_id" id="cen_id" data-placeholder="Seleccione" onchange="combo_programas()">
                                 
                                     <option label="Seleccione"></option>
 
                                 </select>
                             </div>
                         </div>
+                    
                         <div class="col-6">
                             <div class="form-group">
-                                <label for="est_id">Estudiante</label>
-                                <input type="text" class="form-control" name="usu_nom" id="usu_nom" placeholder="Ingrese su nombre" disabled>
+                                <label for="prog_id">Programa</label>
+                                <select class="form-control select2" style="width:100%" name="prog_id" id="prog_id" data-placeholder="Seleccione" onchange="combo_estudiantes()">
+                                
+                                    <option label="Seleccione"></option>
+
+                                </select>
                             </div>
                         </div>
-                        <div class="col-3">
+                        <div class="col-12">
                             <div class="form-group">
-                                <label for="est_id">Celular</label>
-                                <input type="text" class="form-control" name="usu_nom" id="usu_nom" placeholder="Ingrese su nombre" disabled>
+                                <label for="est_id">ID Estudiante</label>
+                                <select class="form-control select2" style="width:100%" name="est_id" id="est_id" data-placeholder="Seleccione">                                
+                                    <option label="Seleccione"></option>
+                                </select>
                             </div>
-                        </div>
+                        </div> 
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="mod_id">Modalidad</label>
@@ -56,27 +63,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-6">
-                            <div class="form-group">
-                                <label for="cen_id">Centro de Operaciones</label>
-                                <select class="form-control select2" style="width:100%" name="cen_id" id="cen_id" data-placeholder="Seleccione">
-                                
-                                    <option label="Seleccione"></option>
-
-                                </select>
-                            </div>
-                        </div>
-                    
-                        <div class="col-6">
-                            <div class="form-group">
-                                <label for="prog_id">Programa</label>
-                                <select class="form-control select2" style="width:100%" name="prog_id" id="prog_id" data-placeholder="Seleccione">
-                                
-                                    <option label="Seleccione"></option>
-
-                                </select>
-                            </div>
-                        </div>
+                        
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="seme_id">Semestre</label>
@@ -130,8 +117,8 @@
                     </div> 
                     <div class="row">
                         <div class="col-12">
-                            <label for="rem_mens">Breve descripción del Acompañamiento</label>
-                            <textarea id="rem_mens"name="rem_mens">
+                            <label for="remision_mens">Breve descripción del Acompañamiento</label>
+                            <textarea id="remision_mens"name="remision_mens">
                             
                             </textarea>
                         </div>

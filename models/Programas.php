@@ -11,10 +11,15 @@
             $sql->execute();
             return $resultado=$sql->fetchAll();
         }
-        public function get_programas2(){
+        public function get_programas2($cen_id = ''){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="SELECT * FROM programas";
+            if($cen_id == ''){
+                $sql="SELECT * FROM programas";
+            }else{
+                $sql="SELECT * FROM programas WHERE cen_id = '$cen_id'";
+            }
+            
             $sql=$conectar->prepare($sql);
             //$sql->bindValue(1, $cen_id);
             $sql->execute();
