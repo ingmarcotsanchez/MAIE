@@ -6,6 +6,8 @@
   define("BASE_PATH","/MAIE");
   require_once("../config/conexion.php");
   require_once("../models/Usuarios.php");
+  $cen_id = $_SESSION["cen_id"];
+  $prog_id = $_SESSION["prog_id"];
   /* $usuario = new Usuario(); */
   /* $totalP = $usuario->total_programas(); */
  /*  var_dump($totalP);

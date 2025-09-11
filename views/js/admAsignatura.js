@@ -151,7 +151,7 @@ function nuevo(){
 function editar(asig_id){
     $.post("/MAIE/controller/asignatura.php?opc=mostrar",{asig_id:asig_id},function (data){
         data = JSON.parse(data);
-        //console.log(data);
+        console.log(data);
         $('#asig_id').val(data.asig_id);
         $('#asig_nom').val(data.asig_nom);
         $('#asig_alfa').val(data.asig_alfa);
@@ -160,7 +160,7 @@ function editar(asig_id){
         $('#asig_horas').val(data.asig_horas);
         $('#seme_id').val(data.seme_id).trigger('change');
         $('#cen_id').val(data.cen_id).trigger('change');
-        $('#prog_id').val(data.prog_id).trigger('change');
+        $('#prog_id_hidden').val(data.prog_id);
     });
     $('#titulo_modal').html('Editar Asignatua');
     $('#modalcrearAsignatura').modal('show');
@@ -205,7 +205,9 @@ function combo_centros(){
 function combo_programas(){
     if($("#cen_id").val() > 0 && $("#cen_id").val() != ''){
         $.post("/MAIE/controller/programas.php?opc=combo2&cen_id="+$("#cen_id").val(), function (data) {
-            $('#prog_id').html(data);
+            $('#prog_id').html(data);            
+            $('#prog_id').val($('#prog_id_hidden').val()).trigger('change');
+            
         });
     }else{
         alert("debe seleccionar el centro")

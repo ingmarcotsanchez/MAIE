@@ -36,10 +36,15 @@ function guardaryeditar(e){
 
 $(document).ready(function(){
 
+    $('#cen_id').select2({
+        dropdownParent: $('#modalcrearEstudiante')
+    });
+
     $('#prog_id').select2({
         dropdownParent: $('#modalcrearEstudiante')
     });
-    combo_programas();
+    //combo_programas();
+    combo_centros();
 
 
     $('input#est_dni').keypress(function (event) {
@@ -154,7 +159,9 @@ function editar(est_id){
         $('#est_sex').val(data.est_sex);
         $('#est_telf').val(data.est_telf);
         $('#est_estado').val(data.est_estado);
-        $('#prog_id').val(data.prog_id);
+        $('#cen_id').val(data.cen_id).trigger('change');
+        $('#prog_id').val(data.prog_id).trigger('change');
+        //$('#prog_id').val(data.prog_id);
     });
     $('#titulo_modal').html('Editar Estudiante');
     $('#modalcrearEstudiante').modal('show');
@@ -183,12 +190,27 @@ function eliminar(est_id){
     });
 
 }
+function combo_centros(){
+    $.post("/MAIE/controller/centro.php?opc=combo", function (data) {
+        $('#cen_id').html(data);
+    });
+}
 
 function combo_programas(){
+    if($("#cen_id").val() > 0 && $("#cen_id").val() != ''){
+        $.post("/MAIE/controller/programas.php?opc=combo2&cen_id="+$("#cen_id").val(), function (data) {
+            $('#prog_id').html(data);
+        });
+    }else{
+        alert("debe seleccionar el centro")
+    }
+}
+
+/* function combo_programas(){
     $.post("/MAIE/controller/programas.php?opc=combo2", function (data) {
         $('#prog_id').html(data);
     });
-}
+} */
 
 $(document).on("click", "#btnplantilla", function () {
     $('#modalEstudiante').modal('show');
@@ -226,7 +248,8 @@ var ExcelToJSON = function() {
                         est_sex : columns[7],
                         est_telf :columns[8],
                         est_estado : columns[9],
-                        prog_id : columns[10]
+                        cen_id : columns[10],
+                        prog_id : columns[11]
                     }, function (data) {
                         console.log(data);
                     });

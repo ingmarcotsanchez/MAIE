@@ -1,11 +1,11 @@
 <?php
     class Estudiante extends Conectar{
-        public function insert_estudiante($est_dni, $est_tipo, $est_cedula,$est_nom,$est_ape,$est_fecnac,$est_correo,$est_sex,$est_telf,$est_estado,$prog_id){
+        public function insert_estudiante($est_dni, $est_tipo, $est_cedula,$est_nom,$est_ape,$est_fecnac,$est_correo,$est_sex,$est_telf,$est_estado,$cen_id,$prog_id){
 
             $conectar = parent::Conexion();
             parent::set_names();
-            $sql="INSERT INTO estudiante (est_id, est_dni, est_tipo, est_cedula, est_nom, est_ape, est_fecnac, est_correo, est_sex, est_telf, est_estado, prog_id, est) 
-                                VALUES (NULL,?,?,?,?,?,?,?,?,?,?,?,1);";
+            $sql="INSERT INTO estudiante (est_id, est_dni, est_tipo, est_cedula, est_nom, est_ape, est_fecnac, est_correo, est_sex, est_telf, est_estado, cen_id, prog_id, est) 
+                                VALUES (NULL,?,?,?,?,?,?,?,?,?,?,?,?,1);";
 
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $est_dni);
@@ -18,13 +18,14 @@
             $sql->bindValue(8, $est_sex);
             $sql->bindValue(9, $est_telf);
             $sql->bindValue(10, $est_estado);
-            $sql->bindValue(11, $prog_id);
+            $sql->bindValue(11, $cen_id);
+            $sql->bindValue(12, $prog_id);
             $sql->execute();
 
             return $resultado = $sql->fetchAll();
         }
 
-        public function update_estudiante($est_id,$est_dni, $est_tipo, $est_cedula,$est_nom,$est_ape,$est_fecnac,$est_correo,$est_sex,$est_telf,$est_estado,$prog_id){
+        public function update_estudiante($est_id,$est_dni, $est_tipo, $est_cedula,$est_nom,$est_ape,$est_fecnac,$est_correo,$est_sex,$est_telf,$est_estado,$cen_id,$prog_id){
 
             $conectar= parent::conexion();
             parent::set_names();
@@ -40,6 +41,7 @@
                     est_sex = ?,
                     est_telf = ?,
                     est_estado = ?,
+                    cen_id = ?,
                     prog_id = ? 
                 WHERE
                     est_id = ?";
@@ -54,8 +56,9 @@
             $sql->bindValue(8, $est_sex);
             $sql->bindValue(9, $est_telf);
             $sql->bindValue(10, $est_estado);
-            $sql->bindValue(11, $prog_id);
-            $sql->bindValue(12, $est_id);
+            $sql->bindValue(11, $cen_id);
+            $sql->bindValue(12, $prog_id);
+            $sql->bindValue(13, $est_id);
             $sql->execute();
             return $resultado=$sql->fetchAll();
         }

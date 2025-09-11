@@ -18,32 +18,32 @@
                                 <input type="text" class="form-control" name="asig_nom" id="asig_nom" placeholder="Ingrese el Peso">
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-3">
                             <div class="form-group">
                                 <label for="asig_alfa">Alfanumerico</label>
                                 <input type="text" class="form-control" name="asig_alfa" id="asig_alfa" placeholder="Ingrese el Alfanumerico">
                                 <div id="respuesta"></div>
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-3">
                             <div class="form-group">
                                 <label for="asig_nrc">NRC</label>
                                 <input type="text" class="form-control" name="asig_nrc" id="asig_nrc" placeholder="Ingrese el NRC">
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-3">
                             <div class="form-group">
                                 <label for="asig_cred">Créditos</label>
                                 <input type="text" class="form-control" name="asig_cred" id="asig_cred" placeholder="Ingrese el Número de Crédito">
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-3">
                             <div class="form-group">
                                 <label for="asig_horas">Horas</label>
                                 <input type="text" class="form-control" name="asig_horas" id="asig_horas" placeholder="Ingrese la cantidad de Horas">
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-4">
                             <div class="form-group">
                                 <label for="seme_id">Semestre</label>
                                 <select class="form-control select2" style="width:100%" name="seme_id" id="seme_id" data-placeholder="Seleccione">
@@ -53,7 +53,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-4">
                             <div class="form-group">
                                 <label for="cen_id">Centro de Operaciones</label>
                                 <select class="form-control select2" style="width:100%" name="cen_id" id="cen_id" data-placeholder="Seleccione" onchange="combo_programas()">
@@ -64,9 +64,10 @@
                             </div>
                         </div>
                     
-                        <div class="col-6">
+                        <div class="col-4">
                             <div class="form-group">
                                 <label for="prog_id">Programa</label>
+                                <input type='hidden' id='prog_id_hidden' name='prog_id_hidden'>
                                 <select class="form-control select2" style="width:100%" name="prog_id" id="prog_id" data-placeholder="Seleccione">
                                 
                                     <option label="Seleccione"></option>

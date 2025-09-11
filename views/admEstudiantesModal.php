@@ -59,9 +59,6 @@
                                 <input type="text" class="form-control" name="est_ape" id="est_ape" placeholder="Ingrese sus Apellidos">
                             </div>
                         </div>
-            
-             
-           
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="est_correo">Correo Electrónico</label>
@@ -97,8 +94,29 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="cen_id">Centro de Operaciones</label>
+                                <select class="form-control select2" style="width:100%" name="cen_id" id="cen_id" data-placeholder="Seleccione" onchange="combo_programas()">
+                                
+                                    <option label="Seleccione"></option>
 
-                        <div class="col-12">
+                                </select>
+                            </div>
+                        </div>
+                    
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="prog_id">Programa</label>
+                                <select class="form-control select2" style="width:100%" name="prog_id" id="prog_id" data-placeholder="Seleccione">
+                                
+                                    <option label="Seleccione"></option>
+
+                                </select>
+                            </div>
+                        </div>
+
+                       <!--  <div class="col-12">
                             <div class="form-group">
                                 <label for="seme_id">Programa academico</label>
                                 <select class="form-control select2" style="width:100%" name="prog_id" id="prog_id" data-placeholder="Seleccione">
@@ -107,7 +125,7 @@
 
                                 </select>
                             </div>
-                        </div>
+                        </div> -->
                        
                     </div>
                 </div>

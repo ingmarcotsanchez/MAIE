@@ -27,6 +27,8 @@
                         $_SESSION["usu_ape"]=$resultado["usu_ape"];
                         $_SESSION["usu_correo"]=$resultado["usu_correo"];
                         $_SESSION["usu_rol"]=$resultado["usu_rol"];
+                        $_SESSION["cen_id"]=$resultado["cen_id"];
+                        $_SESSION["prog_id"]=$resultado["prog_id"];
                         if($usu_rol == "C" || $usu_rol == "GM"){
                             header("Location:".Conectar::ruta()."views/home.php");
                             exit();
@@ -34,8 +36,6 @@
                             header("Location:".Conectar::ruta()."views/remision.php");
                             exit();
                         }
-                        $_SESSION["cen_id"]=$resultado["cen_id"];
-                        $_SESSION["prog_id"]=$resultado["prog_id"];
                         
                     }else{
                         header("Location:".Conectar::ruta()."index.php?m=1");

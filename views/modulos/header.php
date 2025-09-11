@@ -7,6 +7,8 @@
     <ul class="navbar-nav ml-auto">
          <li class="nav-item dropdown">
             <span class="text-muted d-block text-orange"><?php echo $_SESSION["usu_nom"]."  ".$_SESSION["usu_ape"];?></span>
+            <input type='hidden' id='sesion_cen_id' value=<?php echo $_SESSION["cen_id"];?> >
+            <input type='hidden' id='sesion_cen_id' value=<?php echo $_SESSION["prog_id"];?> >
          </li>
     </ul>
 </nav>
