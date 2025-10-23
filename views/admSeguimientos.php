@@ -68,31 +68,21 @@ if(isset($_SESSION["usu_id"])){
                             <div class="form-group">
                                 <label for="prog_id">Programa</label>
                                 <input type="text" class="form-control" name="prog_id" id="prog_id" placeholder="prog_id" readonly>
-                                <!-- <select class="form-control select2" style="width:100%" name="prog_id" id="prog_id" data-placeholder="Seleccione" onchange="combo_estudiantes()">
                                 
-                                    <option label="Seleccione"></option>
-
-                                </select> -->
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="est_id">ID Estudiante</label>
                                 <input type="text" class="form-control" name="est_id" id="est_id" placeholder="est_id" readonly>
-                                <!-- <select class="form-control select2" style="width:100%" name="est_id" id="est_id" data-placeholder="Seleccione">                                
-                                    <option label="Seleccione"></option>
-                                </select> -->
+                                
                             </div>
                         </div> 
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="mod_id">Modalidad</label>
                                 <input type="text" class="form-control" name="mod_id" id="mod_id" placeholder="mod_id" readonly>
-                                <!-- <select class="form-control select2" style="width:100%" name="mod_id" id="mod_id" data-placeholder="Seleccione">
                                 
-                                    <option label="Seleccione"></option>
-
-                                </select> -->
                             </div>
                         </div>
                         
@@ -101,11 +91,7 @@ if(isset($_SESSION["usu_id"])){
                             <div class="form-group">
                                 <label for="jor_id">Jornada</label>
                                 <input type="text" class="form-control" name="jor_id" id="jor_id" placeholder="jor_id" readonly>
-                                <!-- <select class="form-control select2" style="width:100%" name="jor_id" id="jor_id" data-placeholder="Seleccione">
                                 
-                                    <option label="Seleccione"></option>
-
-                                </select> -->
                             </div>
                         </div>
                         
@@ -113,55 +99,35 @@ if(isset($_SESSION["usu_id"])){
                             <div class="form-group">
                                 <label for="seme_id">Semestre</label>
                                 <input type="text" class="form-control" name="seme_id" id="seme_id" placeholder="seme_id" readonly>
-                                <!-- <select class="form-control select2" style="width:100%" name="seme_id" id="seme_id" data-placeholder="Seleccione">
                                 
-                                    <option label="Seleccione"></option>
-
-                                </select> -->
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="tipaco_id">Tipo de Acompañamiento</label>
                                 <input type="text" class="form-control" name="tipaco_id" id="tipaco_id" placeholder="tipaco_id" readonly>
-                                <!-- <select class="form-control select2" style="width:100%" name="tipaco_id" id="tipaco_id" data-placeholder="Seleccione">
                                 
-                                    <option label="Seleccione"></option>
-
-                                </select> -->
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="asig_id">Asignatura</label>
                                 <input type="text" class="form-control" name="asig_id" id="asig_id" placeholder="asig_id" readonly>
-                                <!-- <select class="form-control select2" style="width:100%" name="asig_id" id="asig_id" data-placeholder="Seleccione">
                                 
-                                    <option label="Seleccione"></option>
-
-                                </select> -->
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="nec_id">Necesidades especiales</label>
                                 <input type="text" class="form-control" name="nec_id" id="nec_id" placeholder="cen_id" readonly>
-                                <!-- <select class="form-control select2" style="width:100%" name="nec_id" id="nec_id" data-placeholder="Seleccione">
                                 
-                                    <option label="Seleccione"></option>
-
-                                </select> -->
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="prof_id">Profesor que reporta</label>
                                 <input type="text" class="form-control" name="cen_id" id="prof_id" placeholder="prof_id" readonly>
-                                <!-- <select class="form-control select2" style="width:100%" name="prof_id" id="prof_id" data-placeholder="Seleccione">
-                                
-                                    <option label="Seleccione"></option>
-
-                                </select> -->
+                               
                             </div>
                         </div>
                     </div>
@@ -186,7 +152,7 @@ if(isset($_SESSION["usu_id"])){
                     <div class="row">
                         <div class="col-12">
                             <label for="remision_mens">Breve descripción del Acompañamiento</label>
-                            <textarea id="remision_mens"name="remision_mens" readonly>
+                            <textarea id="remision_mens" name="remision_mens" readonly>
                             
                             </textarea>
                         </div>

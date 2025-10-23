@@ -64,10 +64,15 @@
         public function delete_remision($remision_id){
             $conectar = parent::Conexion();
             parent::set_names();
-            $sql = "UPDATE remision SET estado=0 WHERE remision_id = ?";
+            //$sql = "UPDATE remision SET estado=0 WHERE remision_id = ?";
+            $sql = "DELETE FROM remision WHERE remision_id=?";
+            $sql2 = "INSERT INTO auditoria (aud_id, remision_id, fech_crea) values (NULL,?,now())";
             $sql=$conectar->prepare($sql);
+            $sql2=$conectar->prepare($sql2);
             $sql->bindValue(1,$remision_id);
+            $sql2->bindValue(1,$remision_id);
             $sql->execute();
+            $sql2->execute();
             return $resultado = $sql->fetchAll();
         }
 
@@ -157,7 +162,8 @@
                     profesor.prof_ape,
                     tipoAcompanamiento.tipaco_nombre,
                     estudiante.est_nom,
-                    estudiante.est_ape
+                    estudiante.est_ape,
+                    remision.remision_mens
                 FROM remision 
                 INNER JOIN estudiante on remision.est_id = estudiante.est_id
                 INNER JOIN modalidad on remision.mod_id = modalidad.mod_id

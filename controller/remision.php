@@ -143,7 +143,7 @@
                     if ($row["estado"]=="Abierto"){
                         $sub_array[] = '<strong class="text-success">Abierto</strong>';
                     }else{
-                        $sub_array[] = '<a class="btn btn-sm btn-danger" onClick="CambiarEstado('.$row["remision_id"].')">Cerrado</a>';
+                        $sub_array[] = '<a class="text-danger" onClick="CambiarEstado('.$row["remision_id"].')">Cerrado</a>';
                     }
                     if($row["fech_cierre"]==null){
                         $sub_array[] = '<strong class="text-dark">Sin Cerrar</strong>';

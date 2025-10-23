@@ -30,11 +30,11 @@ $(document).ready(function(){
         ]
     });
 
-    $('#seg_descripcion_usu').summernote({
+    $('#remision_mens').summernote({
         height: 200,
         lang: "es-ES"
     });
-    $('#seg_descripcion_usu').summernote('disable');
+    $('#remision_mens').summernote('disable');
 
     tabla=$('#documentos_data').dataTable({
         "aProcessing": true,
