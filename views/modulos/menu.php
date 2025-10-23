@@ -113,7 +113,7 @@
         </a>
     </li>
     <?php endif; ?>
-    <?php if($_SESSION["usu_rol"] == "C" OR $_SESSION["usu_rol"] == "GM"):?>
+    <?php if($_SESSION["usu_rol"] == "C" OR $_SESSION["usu_rol"] == "P" OR $_SESSION["usu_rol"] == "GM"):?>
     <li class="nav-header text-orange">EJECUCIÓN</li>
     <li class="nav-item">
         <a href="admRemisiones.php" class="nav-link">
@@ -121,13 +121,16 @@
             <p>Remisiones</p>
         </a>
     </li>
-    <li class="nav-item">
-        <a href="admSeguimientos.php" class="nav-link">
-            <i class="nav-icon fas fa-file"></i>
-            <p>Seguimientos</p>
-        </a>
-    </li>
     <?php endif; ?>
+        <?php //if($_SESSION["usu_rol"] == "GM"):?>
+            <!-- <li class="nav-item">
+                <a href="admSeguimientos.php" class="nav-link">
+                    <i class="nav-icon fas fa-copy"></i>
+                    <p>Seguimiento</p>
+                </a>
+            </li> -->
+        <?php //endif; ?>    
+    
     <li class="nav-header text-orange">SALIR</li>
     <li class="nav-item">
         <a href="logout.php" class="nav-link">

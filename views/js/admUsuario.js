@@ -126,6 +126,8 @@ function editar(usu_id){
         $('#usu_correo').val(data.usu_correo);
         $('#usu_pass').val(data.usu_pass);
         $('#usu_rol').val(data.usu_rol);
+        $('#cen_id').val(data.cen_id);
+        $('#prog_id').val(data.prog_id);
 
     });
     $('#titulo_modal').html('Editar un Usuario');

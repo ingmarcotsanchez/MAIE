@@ -45,6 +45,28 @@
                                     <option label="Seleccione"></option>
                                     <option value="C">Coordinador</option>
                                     <option value="GM">Gestor de MAIE</option>
+                                    <option value="P">Profesor</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="cen_id">Centro de Operaciones</label>
+                                <select class="form-control select2" style="width:100%" name="cen_id" id="cen_id" data-placeholder="Seleccione" onchange="combo_programas()">
+                                
+                                    <option label="Seleccione"></option>
+
+                                </select>
+                            </div>
+                        </div>
+                    
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="prog_id">Programa</label>
+                                <select class="form-control select2" style="width:100%" name="prog_id" id="prog_id" data-placeholder="Seleccione" onchange="combo_estudiantes()">
+                                
+                                    <option label="Seleccione"></option>
+
                                 </select>
                             </div>
                         </div>

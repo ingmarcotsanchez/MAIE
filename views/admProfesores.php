@@ -67,7 +67,6 @@ if(isset($_SESSION["usu_id"])){
                               <th>Estado</th>
                               <th></th>
                               <th></th>
-                              <th></th>
                             </tr>
                         </thead>
                         <tbody>

@@ -51,8 +51,6 @@
                                 </select>
                             </div>
                         </div>
-                        
-                   
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="jor_id">Jornada</label>
@@ -116,6 +114,12 @@
                         </div>
                     </div> 
                     <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="fileElem">Documento de Soporte</label>
+                                <input type="file" class="form-control" id="fileElem" name="fileElem" multiple>
+                            </div>
+                        </div>
                         <div class="col-12">
                             <label for="remision_mens">Breve descripción del Acompañamiento</label>
                             <textarea id="remision_mens"name="remision_mens">

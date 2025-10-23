@@ -33,7 +33,7 @@
                             header("Location:".Conectar::ruta()."views/home.php");
                             exit();
                         }else{
-                            header("Location:".Conectar::ruta()."views/remision.php");
+                            header("Location:".Conectar::ruta()."views/admRemisiones.php");
                             exit();
                         }
                         
@@ -50,7 +50,7 @@
             parent::set_names();
             
             if(isset($_POST["enviar"])){
-                $usuario = $_POST["usu_correo"];
+                $usuario = $_POST["correo"];
                 
                 if(empty($usuario)){
                     header("Location:".Conectar::ruta()."recuperar.php?m=3");
@@ -188,12 +188,12 @@
             return $resultado = $sql->fetchAll();
         }
 
-         public function usuario_correo($cedula){
+         public function usuario_correo($usu_correo){
             $conectar = parent::Conexion();
             parent::set_names();
             $sql = "SELECT usu_correo, usu_pass FROM usuario WHERE estado = 1 AND usu_correo=?";
             $sql=$conectar->prepare($sql);
-            $sql->bindValue(1,$cedula);
+            $sql->bindValue(1,$usu_correo);
             $sql->execute();
             var_dump($sql);
             return $resultado = $sql->fetchAll();

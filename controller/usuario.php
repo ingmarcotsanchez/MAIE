@@ -45,7 +45,7 @@
                 }elseif($row["usu_rol"] == 'GM'){
                     $sub_array[] = '<strong class="text-primary">Gestor MAIE</strong>';
                 }else{
-                    $sub_array[] = '<strong class="text-primary">Invitador</strong>';
+                    $sub_array[] = '<strong class="text-primary">Profesor</strong>';
                 }
                 if($row["estado"] == '1'){
                     $sub_array[] = "<button type='button' onClick='est_ina(".$row["usu_id"].");' class='btn btn-success btn-sm'>Activo</button>";

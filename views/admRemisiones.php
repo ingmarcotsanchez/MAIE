@@ -59,12 +59,13 @@ if(isset($_SESSION["usu_id"])){
                     <thead>
                         <tr>
                           <th>Estudiante</th>
-                          <th>Modalidad</th>
-                          <th>Centro</th>
-                          <th>Programa</th>
                           <th>Asignatura</th>
                           <th>Tipo Acompañamiento</th>
+                          <th>Creado</th>
+                          <th>Estado</th>
+                          <th>Cerrado</th>
                           <th></th>
+                          <th></th> 
                           <th></th>
                         </tr>
                     </thead>

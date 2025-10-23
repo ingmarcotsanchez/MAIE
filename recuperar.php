@@ -1,11 +1,17 @@
 <?php
-   require_once("config/conexion.php");
-   if(isset($_POST["enviar"]) and $_POST["enviar"] == "ok"){
-      require_once("models/Usuarios.php");
-      $usuario = new Usuario();
-      $usuario->recuperar();
-      $usu_cor = $usuario->usuario_correo($_POST['usu_correo']);
-   }
+  /*TODO: Llamando Cadena de Conexion */
+  require_once("config/conexion.php");
+
+  if(isset($_POST["enviar"]) and $_POST["enviar"]=="si"){
+    require_once("models/Usuarios.php");
+    /*TODO: Inicializando Clase */
+    
+    /* var_dump($usu_cor['usu_pass']); */
+    $usuario = new Usuario();
+    $usuario->recuperar();
+    $usu_cor = $usuario->usuario_correo($_POST['correo']);
+   
+  }
 ?>
 
 <!DOCTYPE html>
@@ -14,60 +20,66 @@
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-      <link rel="stylesheet" href="public/login/style.css">
-      <title>Saber Pro</title>
+      <link rel="stylesheet" href="public/css/login.css">
+      <title>::MAIE::</title>
    </head>
    <body>
-      <div class="login">
-         <img src="public/img/login-bg.png" alt="login image" class="login__img">
-         <form method="POST" class="login__form">
-         <?php
-          if(isset($_GET["m"])){
-            switch($_GET["m"]){
-                case "1";
-                    ?>
-                    <div class="alert alert-danger" role="alert">
-                    La cédula ingresada NO Existe!
-                    </div>
-                    <?php
-                    break;
-                case "2";
-                    ?>
-                    
-                    <div class="alert alert-success" role="alert" id="pass">
-                    Su clave temporal es <strong id="usu_pass"><?php echo $_GET["nc"]; ?></strong> <!-- 756342908 -->
-                    </div>
-                    
-                    <?php
-                    break;
-                case "3";
-                    ?>
-                    <div class="alert alert-warning" role="alert">
-                    No ha ingresado una cédula!
-                    </div>
-                    <?php
-                    break;
-            }
-          }
-        ?>
-            <h1 class="login__title">Recuperar Contraseña</h1>
-            <div class="login__content">
-               <div class="login__box">
-                  <i class='bx bxs-user'></i>
-                  <div class="login__box-input">
-                     <input type="text" class="login__input" id="login-email" name="email" placeholder="">
-                     <label for="login-email" class="login__label">Cédula</label>
-                  </div>
+      <div class="container">
+        <div class="form-box login">
+            <form method="POST">
+               <?php
+                  if(isset($_GET["m"])){
+                     switch($_GET["m"]){
+                        case "1":
+                           ?>
+                           <div class="alert text-danger" role="alert">
+                           El correo ingresado NO Existe!
+                           </div>
+                           <?php
+                           break;
+                        case "2":
+                           ?>
+                           <div class="alert alert-success" role="alert" id="pass">
+                           Su clave temporal es <strong id="usu_pass"><?php echo $_GET["nc"]; ?></strong>
+                           </div>
+                           <?php
+                           break;
+                        case "3";
+                           ?>
+                           <div class="alert alert-warning" role="alert">
+                           No ha ingresado un correo!
+                           </div>
+                           <?php
+                           break;
+                     }
+                  }
+               ?>
+               <h1>Login</h1>
+               <div class="input-box">
+                  <input type="text" id="correo" name="correo" placeholder="ingrese su correo electrónico"></input>
+                  <i class='bx bx-envelope'></i>
                </div>
+               
+               <div class="forgot-link">
+                  <a href="index.php">Iniciar Sesión</a>
+               </div>
+               <input type="hidden" name="enviar" value="si">
+               <button type="submit" class="btn miBtn" id="btnRecuperar">Recuperar contraseña</button>
+            </form>
+         </div>
+         <div class="form-box register">
+               
+         </div>
+         <div class="toggle-box">
+            <div class="toggle-panel toggle-left">
+               <h3>Bienvenido a MAIE</h3>
+               <p>Esta herramienta esta diseñada para apoyar el seguimiento de estudiantes con bajo rendimiento o dificultades financieras y psicosociales. Tu aporte como docente es clave para identificar y acompañar oportunamente a queines más lo necesitan.
+                  Con MAIE, juntos fortalecemos el camino académico de nuestros estudiantes.
+               </p>
+               <img src="public/img/logo-para-web-2024.png" alt="">
             </div>
-            <input type="hidden" name="enviar" value="ok">
-            <button type="submit" class="login__button miBtn" id="btnRecuperar">Recuperar clave</button>
-            <div class="sec_btn">
-              <a href="index.php" class="login__clave">Iniciar sesión</a> 
-            </div>
-            
-         </form>
-         
+         </div>
       </div>
+      <script src="views/js/reset.js"></script>
    </body>
 </html>

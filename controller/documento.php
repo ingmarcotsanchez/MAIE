@@ -8,13 +8,13 @@
     switch($_GET["opc"]){
         /* manejo de json para poder listar en el datatable, formato de json segun documentacion */
         case "listar":
-            $datos=$documento->get_documento_x_ticket($_POST["tick_id"]);
+            $datos=$documento->get_documento_x_ticket($_POST["remision_id"]);
             $data= Array();
             foreach($datos as $row){
                 $sub_array = array();
-                $sub_array[] = '<a href="../document/ticket/'.$_POST["tick_id"].'/'.$row["doc_nom"].'" target="_blank">'.$row["doc_nom"].'</a>';
+                $sub_array[] = '<a href="../document/seguimientos/'.$_POST["remision_id"].'/'.$row["doc_nom"].'" target="_blank">'.$row["doc_nom"].'</a>';
                 /* TODO: Formato HTML para abrir el documento o descargarlo en una nueva ventana */
-                $sub_array[] = '<a type="button" href="../document/ticket/'.$_POST["tick_id"].'/'.$row["doc_nom"].'" target="_blank" class="btn btn-inline btn-primary btn-sm"><i class="fa fa-eye"></i></a>';
+                $sub_array[] = '<a type="button" href="../document/seguimientos/'.$_POST["remision_id"].'/'.$row["doc_nom"].'" target="_blank" class="btn btn-inline btn-primary btn-sm"><i class="fa fa-eye"></i></a>';
                 $data[] = $sub_array;
             }
 

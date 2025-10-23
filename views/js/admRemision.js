@@ -12,29 +12,57 @@ function guardaryeditar(e){
     e.preventDefault();
     var formData = new FormData($("#remision_form")[0]);
     //console.log(formData);
-    $.ajax({
-        url: "/MAIE/controller/remision.php?opc=guardaryeditar",
-        type: "POST",
-        data: formData,
-        contentType: false,
-        processData: false,
-        
-        success: function(data){
-            console.log(data);
-            $('#remisiones_data').DataTable().ajax.reload();
-            $('#modalcrearRemision').modal('hide');
-
-            Swal.fire({
-                title: 'Correcto!',
-                text: 'Se Registro Correctamente',
-                icon: 'success',
-                confirmButtonText: 'Aceptar'
-            })
+    if ($('#remision_mens').summernote('isEmpty')){
+        Swal.fire({
+            title: 'Advertencia!',
+            text: 'Falta Descripción',
+            icon: 'warning',
+            confirmButtonText: 'Aceptar'
+        })
+    }else{
+        var totalfiles = $('#fileElem').val().length;
+        for (var i = 0; i < totalfiles; i++) {
+            formData.append("files[]", $('#fileElem')[0].files[i]);
         }
-    });
+        $.ajax({
+            url: "/MAIE/controller/remision.php?opc=guardaryeditar",
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            
+            success: function(data){
+                console.log(data);
+                $('#remisiones_data').DataTable().ajax.reload();
+                $('#modalcrearRemision').modal('hide');
+
+                Swal.fire({
+                    title: 'Correcto!',
+                    text: 'Se Registro Correctamente',
+                    icon: 'success',
+                    confirmButtonText: 'Aceptar'
+                })
+            }
+        });
+    }
 }
 
 $(document).ready(function(){
+
+    // Summernote
+    $('#remision_mens').summernote({
+        height: 150,
+        lang: "es-ES",
+       
+        toolbar: [
+            ['style', ['bold', 'italic', 'underline', 'clear']],
+            ['font', ['strikethrough', 'superscript', 'subscript']],
+            ['fontsize', ['fontsize']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['height', ['height']]
+        ]
+    });
 
     $('#prog_id').select2({
         dropdownParent: $('#modalcrearRemision')
@@ -77,50 +105,7 @@ $(document).ready(function(){
     combo_necesidades();
     combo_profesores();
 
-    /* $('input#est_dni').keypress(function (event) {
-        if (event.which < 18 || event.which > 57 || this.value.length === 10) {
-          return false;
-        }
-    });
-
-    $("#est_dni").on("keyup", function() {
-        var est_dni = $("#est_dni").val(); //CAPTURANDO EL VALOR DE INPUT CON ID CEDULA
-        var longitudCedula = $("#est_dni").val().length; //CUENTO LONGITUD
-      
-      //Valido la longitud 
-        if(longitudCedula >= 3){
-            var dataString = 'est_dni=' + est_dni;
-      
-            $.ajax({
-                url: '/MAIE/views/js/verificarEstudiante.php',
-                type: "GET",
-                data: dataString,
-                dataType: "JSON",
-      
-                success: function(datos){
-      
-                    if( datos.success == 1){
-      
-                        $("#respuesta").html(datos.message);
-      
-                        $("input").attr('disabled',true);
-                        $("select").attr('disabled',true);
-                        $("input#est_dni").attr('disabled',false);
-                        $("button").attr('disabled',true);
-      
-                    }else{
-      
-                        $("#respuesta").html(datos.message);
-      
-                        $("input").attr('disabled',false);
-                        $("select").attr('disabled',false);
-                        $("button").attr('disabled',false);
-      
-                    }
-                }
-            });
-        }
-    }); */
+  
 
 
     $('#remisiones_data').DataTable({
@@ -177,20 +162,25 @@ function nuevo(){
 function editar(remision_id){
     $.post("/MAIE/controller/remision.php?opc=mostrar",{remision_id:remision_id},function (data){
         data = JSON.parse(data);
-        //console.log(data);
-        $('#est_id').val(data.est_id);
-        $('#est_telf').val(data.est_telf);
-        $('#mod_id').val(data.mod_id);
-        $('#jor_id').val(data.jor_id);
-        $('#cen_id').val(data.cen_id);
-        $('#prog_id').val(data.prog_id);
-        $('#seme_id').val(data.seme_id);
-        $('#tipaco_id').val(data.tipaco_id);
-        $('#asig_id').val(data.asig_id);
-        $('#nec_id').val(data.nec_id);
-        $('#prof_id').val(data.prof_id);
-        $('#rem_mens').val(data.rem_mens);
+        console.log(data.est_id);
         
+        $('#est_telf').val(data.est_telf).trigger('change');
+        $('#mod_id').val(data.mod_id).trigger('change');
+        $('#jor_id').val(data.jor_id).trigger('change');
+        $('#cen_id').val(data.cen_id).trigger('change');
+        
+        setTimeout(() => {            
+            $('#prog_id').val(data.prog_id).trigger('change');
+            setTimeout(() => {
+                $('#est_id').val(data.est_id).trigger('change');            
+            }, "100"); 
+        }, "100");     
+        $('#seme_id').val(data.seme_id).trigger('change');
+        $('#tipaco_id').val(data.tipaco_id).trigger('change');
+        $('#asig_id').val(data.asig_id).trigger('change');
+        $('#nec_id').val(data.nec_id).trigger('change');
+        $('#prof_id').val(data.prof_id).trigger('change');
+        $('#rem_mens').val(data.rem_mens);        
         $('#rem_estado').val(data.rem_estado);
     });
     $('#titulo_modal').html('Editar Remisión');
@@ -220,9 +210,7 @@ function eliminar(remision_id){
     });
 
 }
-function test(){
-    alert(12);
-}
+
 
 function combo_programas(){
     if($("#cen_id").val() > 0 && $("#cen_id").val() != ''){
@@ -293,72 +281,9 @@ function combo_profesores(){
     });
 }
 
-/* $(document).on("click", "#btnplantilla", function () {
-    $('#modalEstudiante').modal('show');
-}); */
-
-/* var ExcelToJSON = function() {
-    this.parseExcel = function(file) {
-        var reader = new FileReader();
-
-        reader.onload = function(e) {
-            var data = e.target.result;
-            var workbook = XLSX.read(data, {
-                type: 'binary'
-            });
-            //TODO: Recorrido a todas las pestañas
-            workbook.SheetNames.forEach(function(sheetName) {
-                // Here is your object
-                var XL_row_object = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
-                var json_object = JSON.stringify(XL_row_object);
-                EstudianteList = JSON.parse(json_object);
-
-                console.log(EstudianteList)
-                for (i = 0; i < EstudianteList.length; i++) {
-
-                    var columns = Object.values(EstudianteList[i])
-
-                    $.post("/MAIE/controller/estudiante.php?opc=guardar_desde_excel",{
-                        est_dni : columns[0],
-                        est_tipo : columns[1],
-                        est_cedula : columns[2],
-                        est_nom : columns[3],
-                        est_ape : columns[4],
-                        est_fecnac : columns[5],
-                        est_correo : columns[6],
-                        est_sex : columns[7],
-                        est_telf :columns[8],
-                        est_estado : columns[9],
-                        prog_id : columns[10]
-                    }, function (data) {
-                        console.log(data);
-                    });
-
-                }
-                
-                document.getElementById("upload").value=null;
-
-                $('#estudiante_data').DataTable().ajax.reload();
-                $('#modalEstudiante').modal('hide');
-            })
-        };
-        reader.onerror = function(ex) {
-            console.log(ex);
-        };
-
-        reader.readAsBinaryString(file);
-    };
-};
-
-function handleFileSelect(evt) {
-    var files = evt.target.files; // FileList object
-    var xl2json = new ExcelToJSON();
-    xl2json.parseExcel(files[0]);
+function seguimiento(remision_id){
+    console.log(remision_id);
+    window.open('admSeguimientos.php?ID='+ remision_id +'');
 }
-
-document.getElementById('upload').addEventListener('change', handleFileSelect, false);
- */
-
-
 
 init();
